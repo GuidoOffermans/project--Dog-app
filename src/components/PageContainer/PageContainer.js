@@ -11,7 +11,7 @@ import DogDetail from "../Pages/DogDetail/DogDetail";
 import GuessBreedGame from "../Pages/GuessBreedGame/GuessBreedGame";
 import GuessPictureGame from "../Pages/GuessPictureGame/GuessPictureGame";
 import { connect } from "react-redux";
-import { setDogs, getDogs } from "../../redux/actions/dogList";
+import { setDogs, getDogs } from "../../redux/actions/dogListActions";
 
 class PageContainer extends Component {
   componentDidMount() {
