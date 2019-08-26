@@ -13,8 +13,8 @@ class Games extends Component {
 					<BackArrow />
 				</header>
 				<main>
-					<Link to="">Guess the breed</Link>
-					<Link to="">Guess the picture</Link>
+					<Link to="/games/guess-the-breed">Guess the breed</Link>
+					<Link to="games/guess-the-picture">Guess the picture</Link>
 					<Link to="">Guess both</Link>
 				</main>
 			</div>

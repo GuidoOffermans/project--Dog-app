@@ -8,6 +8,8 @@ import HomePage from '../Pages/HomePage/HomePage'
 import Games from "../Pages/Games/Games"
 import DogList from "../Pages/DogList/DogList"
 import DogDetail from "../Pages/DogDetail/DogDetail"
+import GuessBreedGame from "../Pages/GuessBreedGame/GuessBreedGame"
+import GuessPictureGame from "../Pages/GuessPictureGame/GuessPictureGame"
 
 class PageContainer extends Component {
 	render() {
@@ -18,6 +20,8 @@ class PageContainer extends Component {
 					<Route exact path="/games" component={Games} />
 					<Route exact path="/dog-list" component={DogList} />
 					<Route path="/dog-list/:breed" component={DogDetail} />
+					<Route path="/games/guess-the-breed" component={GuessBreedGame} />
+					<Route path="/games/guess-the-picture" component={GuessPictureGame} />
 				</Switch>
 			</div>
 		);
