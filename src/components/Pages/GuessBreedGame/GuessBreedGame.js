@@ -20,7 +20,7 @@ class HomePage extends Component {
           <Score />
         </header>
         <main>
-          <DogPicture />
+          <DogPicture breed="african" />
           <AnswersContainer />
         </main>
         <footer>
