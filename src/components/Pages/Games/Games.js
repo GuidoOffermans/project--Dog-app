@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom';
+import './games.css';
 
-import Logo from "../../Layout/Logo/Logo"
-import BackArrow from "../../Layout/BackArrow/BackArrow"
+import Logo from '../../Layout/Logo/Logo';
+import BackArrow from '../../Layout/BackArrow/BackArrow';
 
 class Games extends Component {
 	render() {
 		return (
-			<div>
+			<div id='games'>
 				<header>
 					<Logo />
 					<BackArrow />
 				</header>
 				<main>
-					<Link to="/games/guess-the-breed">Guess the breed</Link>
-					<Link to="games/guess-the-picture">Guess the picture</Link>
-					<Link to="">Guess both</Link>
+					<Link className="link" to="/games/guess-the-breed">
+						Guess the breed
+					</Link>
+					<Link className="link" to="games/guess-the-picture">
+						Guess the picture
+					</Link>
+					<Link className="link" to="">
+						Guess both
+					</Link>
 				</main>
 			</div>
 		);
