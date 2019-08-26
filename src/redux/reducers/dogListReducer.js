@@ -1,4 +1,4 @@
-import { SET_DOGS } from "../actions/dogList";
+import { SET_DOGS } from "../actions/dogListActions";
 
 export default (state = [], action = {}) => {
   switch (action.type) {

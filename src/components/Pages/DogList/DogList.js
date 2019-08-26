@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
 
-class DogList extends Component {
+export class DogList extends Component {
+
   render() {
+
+    const listOfDogs = this.props.dogList
+
     return (
       <div>
         <header>
@@ -13,11 +18,19 @@ class DogList extends Component {
           <BackArrow />
         </header>
         <main>
-          <Link to="/dog-list/labrador">Dog detail</Link>
+          {listOfDogs.map(dog => {
+            return <Link to={"/dog-list/" + dog}>{dog}</Link>
+          })}
         </main>
       </div>
     );
   }
 }
 
-export default DogList;
+const mapStateToProps = (state) => {
+  return {
+    dogList: state.dogList
+  }
+}
+
+export default connect(mapStateToProps)(DogList)
