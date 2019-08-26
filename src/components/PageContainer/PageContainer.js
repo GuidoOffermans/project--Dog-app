@@ -39,6 +39,7 @@ const mapStateToProps = state => {
     dogs: state.dogs
   };
 };
+
 export default connect(
   mapStateToProps,
   { getDogs }
