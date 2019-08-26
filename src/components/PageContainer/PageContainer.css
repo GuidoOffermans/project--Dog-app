@@ -1,0 +1,6 @@
+/* Main styling common to all pages */
+
+.page-container main {
+  display: flex;
+  flex-direction: column;
+}
