@@ -1,3 +1,10 @@
+import { SET_DOGS } from "../actions/dogList";
+
 export default (state = [], action = {}) => {
-  return state
-}
+  switch (action.type) {
+    case SET_DOGS:
+      return action.payload;
+    default:
+      return state;
+  }
+};
