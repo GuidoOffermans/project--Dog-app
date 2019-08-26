@@ -8,10 +8,10 @@ import BackArrow from '../../Layout/BackArrow/BackArrow';
 class Games extends Component {
 	render() {
 		return (
-			<div id='games'>
+			<div id="games">
 				<header>
-					<Logo />
 					<BackArrow />
+					<Logo />
 				</header>
 				<main>
 					<Link className="link" to="/games/guess-the-breed">

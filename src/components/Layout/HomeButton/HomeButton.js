@@ -4,7 +4,7 @@ import HomeIcon from "../../../images/home.svg"
 
 class HomeButton extends Component {
     render() {
-        return <img src={HomeIcon} alt="Home" />
+        return <img className='homeButton' src={HomeIcon} alt="Home" />
     }
 }
 
