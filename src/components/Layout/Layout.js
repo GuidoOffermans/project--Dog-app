@@ -9,7 +9,7 @@ class Layout extends Component {
 		return (
 			<div id='layout'>
 				<Header />
-				<main id='main'>
+				<main>
 					<p>main content</p>
 				</main>
 				<Footer />

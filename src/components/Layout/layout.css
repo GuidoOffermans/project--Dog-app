@@ -4,13 +4,13 @@
 
 }
 
-#layout #main {
+#layout main {
   display: flex;
   flex-direction: column;
   height: 60vh;
 }
 
-#layout #header{
+#layout header{
   display: flex;
   flex-direction: column;
   height: 20vh;
@@ -18,7 +18,7 @@
 
 }
 
-#layout #footer {
+#layout footer {
   display: flex;
   flex-direction: column;
   height: 20vh;
