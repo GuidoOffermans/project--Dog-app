@@ -1,0 +1,37 @@
+#games {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%
+
+}
+
+#games main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;  
+  margin: 5rem 2rem 10rem;  
+
+}
+
+#games .link {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  width: 70%;
+  height: 5rem;
+  background:lightgrey;
+  margin: 1rem;
+  font-size: 2rem;
+  color: black;
+  text-decoration: none;
+  border: solid black 1px;
+  box-shadow: 10px 10px 5px grey;
+}
+
+#games .link:hover {
+  box-shadow: 10px 10px 5px black;
+}
