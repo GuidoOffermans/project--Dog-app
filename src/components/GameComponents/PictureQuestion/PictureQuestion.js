@@ -27,12 +27,24 @@ class PictureQuestion extends Component {
 
     if (answer1 !== undefined) {
       return [
-        <DogPicture breed={answer1} />,
-        <DogPicture breed={answer2} />
+        <div onClick={this.wrongAnswerClicked}>
+          <DogPicture breed={answer1} />
+        </div>,
+        <div onClick={this.wrongAnswerClicked}>
+          <DogPicture breed={answer2} />
+        </div>
       ];
     } else {
-      return false
+      return false;
     }
+  };
+
+  rightAnswerClicked = () => {
+    alert("You are right!");
+  };
+
+  wrongAnswerClicked = () => {
+    alert("You are wrong!");
   };
 
   render() {
@@ -43,7 +55,9 @@ class PictureQuestion extends Component {
             ? [
                 <div className="breedName">{this.state.currentBreed}</div>,
                 <div className="answers">
-                  <DogPicture breed={this.state.currentBreed}/>
+                  <div onClick={this.rightAnswerClicked}>
+                    <DogPicture breed={this.state.currentBreed} />
+                  </div>
                   {this.getTwoRandomBreeds()}
                 </div>
               ]
