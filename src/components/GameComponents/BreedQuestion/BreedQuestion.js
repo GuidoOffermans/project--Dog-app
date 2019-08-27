@@ -4,10 +4,13 @@ import DogPicture from "../../Layout/DogPicture/DogPicture";
 
 class BreedQuestion extends Component {
   state = {
-    currentBreed: "african"
+    currentBreed: ""
   };
 
-  componentDidMount = () => {};
+  // componentDidMount = () => {
+  //   console.log('breed question props11:', this.props)
+  //   // this.setState({currentBreed: this.props.currentGameDogs[0][0]})
+  // };
 
   getTwoRandomBreeds = () => {
     const dogList = this.props.dogList;
@@ -34,7 +37,11 @@ class BreedQuestion extends Component {
   };
 
   render() {
-    return (
+    // this.setState({currentBreed: this.props.currentGameDogs[0][0]})
+    console.log('breed question props:', this.props)
+
+    return (this.props.currentGameDogs.length == 0) ? false :
+    (
       <div className="question">
         <React.Fragment>
           {this.state.currentBreed !== ""

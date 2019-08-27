@@ -11,7 +11,6 @@ import {shuffleArray, chunkify} from './dogfunction'
 
 class GenericGamePage extends Component {
 	render() {
-    // console.log('chunkiechunk:', this.state.currentGameDogs)
 		return (
 			<div>
 				<header>
@@ -22,7 +21,6 @@ class GenericGamePage extends Component {
 				</header>
 				<main>
           {this.props.dogs && this.props.dogs.length > 0 ? <WithDogsPage dogs={this.props.dogs} /> : "Loading..."}
-					{/* <GetQuestion currentGameType={this.state.currentGameType} /> */}
 				</main>
 				<footer>
 					<Hints />
@@ -34,12 +32,12 @@ class GenericGamePage extends Component {
 
 class WithDogsPage extends Component {
 	state = {
-    currentGameType: 'breedd',
+    currentGameType: 'breed',
     currentGameDogs: []
   };
 
   componentDidMount = () => {
-    console.log('this.props.dogs',this.props.dogs)
+    // console.log('this.props.dogs',this.props.dogs)
     const chunkedDogs = chunkify(shuffleArray(this.props.dogs));
     console.log(chunkedDogs)
     this.setState({
@@ -51,9 +49,8 @@ class WithDogsPage extends Component {
     console.log('chunkiechunk:', this.state.currentGameDogs)
 		return (
 			<div>
-        sdfsdfsdf
-        <GetQuestion currentGameType={this.state.currentGameType} />
-			</div>
+        <GetQuestion currentGameDogs={this.state.currentGameDogs} currentGameType={this.state.currentGameType} />
+			</div> 
 		);
 	}
 }
