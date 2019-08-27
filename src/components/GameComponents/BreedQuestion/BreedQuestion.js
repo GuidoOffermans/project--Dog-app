@@ -5,17 +5,7 @@ import DogPicture from "../../Layout/DogPicture/DogPicture";
 
 class BreedQuestion extends Component {
   state = {
-    breedsInGame: [
-      "chow",
-      "collie",
-      "african",
-      "deerhound",
-      "dingo",
-      "greyhound"
-    ],
-    currentBreed: "chow",
-    answer1: "",
-    answer2: ""
+    currentBreed: "african"
   };
 
   componentDidMount = () => {};
