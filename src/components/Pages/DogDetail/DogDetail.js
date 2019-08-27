@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
+import HomeButton from "../../Layout/HomeButton/HomeButton";
 
 import { getImages } from "../../../redux/actions/imagesAction";
 
@@ -18,6 +19,7 @@ class DogDetail extends Component {
         <header>
           <Logo />
           <BackArrow />
+          <HomeButton />
         </header>
         <main>
           Dog Details
