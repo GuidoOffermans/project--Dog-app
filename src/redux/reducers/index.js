@@ -1,6 +1,8 @@
-import { combineReducers } from 'redux'
-import reducer from './reducer'
+import { combineReducers } from "redux";
+import dogList from "./dogListReducer";
+import dogImages from "./imagesReducer";
 
 export default combineReducers({
-  reducer
-})
+  dogList,
+  dogImages
+});
