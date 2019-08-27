@@ -8,6 +8,7 @@ import Score from "../../GameComponents/Score/Score";
 import Hints from "../../GameComponents/Hints/Hints";
 import AnswersContainer from "../../GameComponents/AnswersContainer/AnswersContainer";
 import DogPicture from "../../Layout/DogPicture/DogPicture";
+import SetStarterDogs from '../../GameComponents/SetStarterDogs/SetStarterDogs'
 import { getScore } from "../../../redux/actions/scoreAction";
 
 class GuessBreedGame extends Component {
@@ -26,6 +27,7 @@ class GuessBreedGame extends Component {
         <main>
           <DogPicture breed="african" />
           <AnswersContainer />
+          <SetStarterDogs/>
         </main>
         <footer>
           <Hints />

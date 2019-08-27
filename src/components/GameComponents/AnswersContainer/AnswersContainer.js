@@ -6,7 +6,7 @@ import Answer from "../Answer/Answer";
 class Answers extends Component {
   render() {
     return (
-      <div classname="answers">
+      <div className="answers">
         <Answer />
         <Answer />
         <Answer />
