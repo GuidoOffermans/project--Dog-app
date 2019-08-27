@@ -37,13 +37,13 @@ function SetStarterDogs(props) {
 
 	return (
 		<div>
-			{chunkedDogs.map((chunk) => (
+			{/* {chunkedDogs.map((chunk) => (
 				<ul key={chunk}>
 					{chunk.map((chunkItem) => (
 						<li key={chunkItem}>{chunkItem}</li>
 					))}
 				</ul>
-			))}
+			))} */}
 		</div>
 	);
 }
