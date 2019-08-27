@@ -5,13 +5,12 @@ import BackArrow from "../../Layout/BackArrow/BackArrow";
 import HomeButton from "../../Layout/HomeButton/HomeButton";
 import Score from "../../GameComponents/Score/Score";
 import Hints from "../../GameComponents/Hints/Hints";
-import GetQuestion from "../../GameComponents/GetQuestion/GetQuestion"
+import GetQuestion from "../../GameComponents/GetQuestion/GetQuestion";
 
 class GenericGamePage extends Component {
-
-  state =  {
-    currentGameType: "breedd",
-  }
+  state = {
+    currentGameType: "breedd"
+  };
 
   render() {
     return (
@@ -23,7 +22,7 @@ class GenericGamePage extends Component {
           <Score />
         </header>
         <main>
-          <GetQuestion currentGameType={this.state.currentGameType}/>
+          <GetQuestion currentGameType={this.state.currentGameType} />
         </main>
         <footer>
           <Hints />
