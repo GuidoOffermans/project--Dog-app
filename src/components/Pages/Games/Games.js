@@ -20,7 +20,7 @@ class Games extends Component {
 					<Link className="link" to="games/guess-the-picture">
 						Guess the picture
 					</Link>
-					<Link className="link" to="">
+					<Link className="link" to="/games/guess-picture-or-breed">
 						Guess both
 					</Link>
 				</main>
