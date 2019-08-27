@@ -8,6 +8,7 @@ import Score from "../../GameComponents/Score/Score";
 import Hints from "../../GameComponents/Hints/Hints";
 import AnswersContainer from "../../GameComponents/AnswersContainer/AnswersContainer";
 import DogPicture from "../../Layout/DogPicture/DogPicture";
+import SetStarterDogs from '../../GameComponents/SetStarterDogs/SetStarterDogs'
 
 class HomePage extends Component {
   render() {
@@ -22,6 +23,7 @@ class HomePage extends Component {
         <main>
           <DogPicture breed="african" />
           <AnswersContainer />
+          <SetStarterDogs/>
         </main>
         <footer>
           <Hints />
