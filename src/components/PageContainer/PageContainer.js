@@ -10,6 +10,8 @@ import DogDetail from "../Pages/DogDetail/DogDetail";
 import GuessBreedGame from "../Pages/GuessBreedGame/GuessBreedGame";
 import GuessPictureGame from "../Pages/GuessPictureGame/GuessPictureGame";
 import GuessPictureOrBreed from "../Pages/GuessPictureOrBreed/GuessPictureOrBreed";
+import GenericGamePage from "../Pages/GenericGamePage/GenericGamePage";
+
 
 import { setDogs, getDogs } from "../../redux/actions/dogListActions";
 
@@ -29,6 +31,7 @@ class PageContainer extends Component {
           <Route path="/games/guess-the-breed" component={GuessBreedGame} />
           <Route path="/games/guess-the-picture" component={GuessPictureGame} />
           <Route path="/games/guess-picture-or-breed" component={GuessPictureOrBreed} />
+          <Route path="/games/game" component={GenericGamePage} />
         </Switch>
       </div>
     );
