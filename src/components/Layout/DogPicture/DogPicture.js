@@ -2,19 +2,22 @@ import React, { Component } from "react";
 import * as request from "superagent";
 
 class DogPicture extends Component {
+  state = { src: "" };
 
-  state = {src: ""};
-  
   componentDidMount() {
     request(
       "https://dog.ceo/api/breed/" + this.props.breed + "/images/random"
     ).then(response => {
-      this.setState({src: response.body.message})
+      this.setState({ src: response.body.message });
     });
   }
 
   render() {
-    return <img src={this.state.src} alt={this.props.breed}/>
+    return this.state.src !== "" ? (
+      <img src={this.state.src} alt={this.props.breed} />
+    ) : (
+      "Loading picture..."
+    );
   }
 }
 
