@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
@@ -8,8 +8,12 @@ import Score from "../../GameComponents/Score/Score";
 import Hints from "../../GameComponents/Hints/Hints";
 import AnswersContainer from "../../GameComponents/AnswersContainer/AnswersContainer";
 import DogPicture from "../../Layout/DogPicture/DogPicture";
+import { getScore } from "../../../redux/actions/scoreAction";
 
-class HomePage extends Component {
+class GuessBreedGame extends Component {
+  componentDidMount() {
+    // this.props.getScore(score);
+  }
   render() {
     return (
       <div>
@@ -31,4 +35,11 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  { getScore }
+)(GuessBreedGame);
