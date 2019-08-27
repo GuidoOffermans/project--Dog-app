@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
 import * as request from "superagent";
 
 class DogPicture extends Component {
