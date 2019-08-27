@@ -13,7 +13,7 @@ import GuessPictureOrBreed from "../Pages/GuessPictureOrBreed/GuessPictureOrBree
 import GenericGamePage from "../Pages/GenericGamePage/GenericGamePage";
 
 
-import { setDogs, getDogs } from "../../redux/actions/dogListActions";
+import { getDogs } from "../../redux/actions/dogListActions";
 
 class PageContainer extends Component {
   componentDidMount() {

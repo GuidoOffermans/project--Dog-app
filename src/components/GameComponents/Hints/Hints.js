@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
 
 class Hints extends Component {
   render() {
-    return false;
+    return(<div></div>);
   }
 }
 

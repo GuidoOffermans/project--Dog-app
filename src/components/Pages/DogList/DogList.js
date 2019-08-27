@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import './dogList.css'
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
@@ -14,12 +15,12 @@ export class DogList extends Component {
     return (
       <div>
         <header>
+        <BackArrow />
           <Logo />
-          <BackArrow />
         </header>
-        <main>
+        <main id='dogList-main'>
           {listOfDogs.map(dog => {
-            return <Link to={"/dog-list/" + dog}>{dog}</Link>
+            return <Link className="link" to={"/dog-list/" + dog}>{dog}</Link>
           })}
         </main>
       </div>

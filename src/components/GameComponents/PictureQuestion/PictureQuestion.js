@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Link } from "react-router-dom";
 import DogPicture from "../../Layout/DogPicture/DogPicture";
+// import DogPicture from "../../Layout/DogPicture/DogPicture";
 
 class PictureQuestion extends Component {
   state = {

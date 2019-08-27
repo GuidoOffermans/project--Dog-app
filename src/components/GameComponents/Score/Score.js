@@ -1,10 +1,18 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Score extends Component {
   render() {
-    return false;
+    const score =
+      (this.props.score.questionsAsked / this.props.score.correctAnswers) * 100;
+    return <div>{score}</div>;
   }
 }
 
-export default Score;
+const mapStateToProps = state => {
+  return {
+    score: state.score
+  };
+};
+
+export default connect(mapStateToProps)(Score);

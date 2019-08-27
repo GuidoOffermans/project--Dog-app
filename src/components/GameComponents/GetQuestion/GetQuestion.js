@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
 
-import DogPicture from "../../Layout/DogPicture/DogPicture";
+// import DogPicture from "../../Layout/DogPicture/DogPicture";
 import BreedQuestion from "../../GameComponents/BreedQuestion/BreedQuestion";
 import PictureQuestion from "../../GameComponents/PictureQuestion/PictureQuestion";
 
