@@ -14,8 +14,8 @@ export class DogList extends Component {
     return (
       <div>
         <header>
+        <BackArrow />
           <Logo />
-          <BackArrow />
         </header>
         <main>
           {listOfDogs.map(dog => {
