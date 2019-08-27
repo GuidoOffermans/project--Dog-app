@@ -39,17 +39,19 @@ class WithDogsPage extends Component {
   componentDidMount = () => {
     // console.log('this.props.dogs',this.props.dogs)
     const chunkedDogs = chunkify(shuffleArray(this.props.dogs));
-    console.log(chunkedDogs)
+    // console.log(chunkedDogs)
     this.setState({
       currentGameDogs: [...chunkedDogs]
     })
   }
 
 	render() {
-    console.log('chunkiechunk:', this.state.currentGameDogs)
-		return (
+	// console.log('chunkiechunk:', this.state.currentGameDogs)
+	// console.log('renderdoglist:', this.props.dogs)
+	
+		return this.props.dogs.length < 1 ? false : (
 			<div>
-        <GetQuestion currentGameDogs={this.state.currentGameDogs} currentGameType={this.state.currentGameType} />
+        		<GetQuestion currentGameDogs={this.state.currentGameDogs} currentGameType={this.state.currentGameType} />
 			</div> 
 		);
 	}

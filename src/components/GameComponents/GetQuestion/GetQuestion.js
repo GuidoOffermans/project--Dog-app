@@ -7,7 +7,7 @@ import PictureQuestion from "../../GameComponents/PictureQuestion/PictureQuestio
 class GetQuestion extends Component {
 
   render() {
-    console.log('props getquestion:',this.props)
+    // console.log('props getquestion:',this.props)
     return this.props.currentBreed !== "" ? (
       this.props.currentGameType === "breed" ? (
         <BreedQuestion currentGameDogs={this.props.currentGameDogs}/>

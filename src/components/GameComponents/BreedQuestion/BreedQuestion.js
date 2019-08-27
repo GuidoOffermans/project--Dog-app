@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import DogPicture from "../../Layout/DogPicture/DogPicture";
 
+let statesSet = false
+
 class BreedQuestion extends Component {
   state = {
     currentBreed: ""
   };
 
-  // componentDidMount = () => {
-  //   console.log('breed question props11:', this.props)
-  //   // this.setState({currentBreed: this.props.currentGameDogs[0][0]})
-  // };
+  componentDidUpdate = () => {
+
+    if(statesSet === false && this.props.currentGameDogs.length > 0 && this.props.dogList.length > 0) {
+      this.setState({ currentBreed: this.props.currentGameDogs[0][0] })
+      console.log("breedset", this.props.currentGameDogs[0][0])
+      statesSet = true
+    }
+  };
 
   getTwoRandomBreeds = () => {
     const dogList = this.props.dogList;
@@ -37,25 +43,26 @@ class BreedQuestion extends Component {
   };
 
   render() {
-    // this.setState({currentBreed: this.props.currentGameDogs[0][0]})
-    console.log('breed question props:', this.props)
+    if (statesSet === false) {
 
-    return (this.props.currentGameDogs.length == 0) ? false :
-    (
-      <div className="question">
-        <React.Fragment>
-          {this.state.currentBreed !== ""
-            ? [
-                <DogPicture breed={this.state.currentBreed} />,
-                <div className="answers">
-                  <div className="answer">{this.state.currentBreed}</div>
-                  {this.getTwoRandomBreeds()}
-                </div>
-              ]
-            : false}
-        </React.Fragment>
-      </div>
-    );
+      return false;
+
+    } else {
+
+      return (
+        <div className="question">
+          <React.Fragment>
+            {[
+              <DogPicture breed={this.state.currentBreed} />,
+              <div className="answers">
+                <div className="answer">{this.state.currentBreed}</div>
+                {this.getTwoRandomBreeds()}
+              </div>
+            ]}
+          </React.Fragment>
+        </div>
+      );
+    }
   }
 }
 

@@ -60,4 +60,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PictureQuestion);
+export default (PictureQuestion);
