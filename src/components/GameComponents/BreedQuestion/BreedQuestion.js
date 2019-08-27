@@ -23,10 +23,14 @@ class BreedQuestion extends Component {
 
     let answer2 = dogListClone[Math.floor(Math.random() * dogListClone.length)];
 
-    return [
-      <div className="answer">{answer1}</div>,
-      <div className="answer">{answer2}</div>
-    ];
+    if (answer1 !== undefined) {
+      return [
+        <div className="answer">{answer1}</div>,
+        <div className="answer">{answer2}</div>
+      ];
+    } else {
+      return false;
+    }
   };
 
   render() {

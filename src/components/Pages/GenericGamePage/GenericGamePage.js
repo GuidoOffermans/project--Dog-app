@@ -10,7 +10,7 @@ import GetQuestion from "../../GameComponents/GetQuestion/GetQuestion"
 class GenericGamePage extends Component {
 
   state =  {
-    currentGameType: "breed",
+    currentGameType: "breedd",
   }
 
   render() {
