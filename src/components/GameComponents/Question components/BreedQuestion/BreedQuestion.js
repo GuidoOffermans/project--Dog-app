@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DogPicture from '../../DogPicture/DogPicture';
+import { setCurrentBreed } from '../../../../redux/actions/gameActions';
 
+let index = 0;
 class BreedQuestion extends Component {
+	state = { hi: '' };
 	getTwoRandomBreeds = () => {
 		const dogList = this.props.dogList;
 		const dogListClone = [ ...dogList ];
@@ -33,7 +36,10 @@ class BreedQuestion extends Component {
 	};
 
 	correctAnswerClicked = () => {
-		alert("That's the right answer!");
+		// alert("That's the right answer!");
+		index = index + 1;
+		const nextDog = this.props.dogList[index];
+		this.props.setCurrentBreed(nextDog);
 	};
 
 	wrongAnswerClicked = () => {
@@ -75,4 +81,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps)(BreedQuestion);
+export default connect(mapStateToProps, { setCurrentBreed })(BreedQuestion);
