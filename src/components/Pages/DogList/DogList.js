@@ -6,7 +6,6 @@ import "./dogList.css";
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
-import AlphabetPicker from "./AlphabetPicker/AlphabetPicker";
 
 export class DogList extends Component {
   letterClicked = letter => {
