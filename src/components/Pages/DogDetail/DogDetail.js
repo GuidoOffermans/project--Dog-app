@@ -23,7 +23,7 @@ class DogDetail extends Component {
         <main>
           Dog Details
           {this.props.images.map((image, index) =>
-            index < 10 ? <img src={image} alt="dog" /> : false
+            index < 10 ? <img key={index} src={image} alt="dog" /> : false
           )}
         </main>
       </div>

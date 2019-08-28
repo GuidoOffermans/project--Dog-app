@@ -11,9 +11,7 @@ export function setDogs(dogs) {
 export function getDogs() {
   return function(dispatch) {
     request("https://dog.ceo/api/breeds/list/all").then(response => {
-      setTimeout(function () {
         dispatch(setDogs(Object.keys(response.body.message)));
-      }, 1000);
     });
   };
 }
