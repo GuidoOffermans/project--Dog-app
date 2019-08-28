@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import DogPicture from "../../DogPicture/DogPicture";
 
-let hasRightData = false;
+let hasData = false;
 
 class BreedQuestion extends Component {
   state = {
@@ -11,12 +11,12 @@ class BreedQuestion extends Component {
 
   componentDidUpdate = () => {
     if (
-      hasRightData === false &&
+      hasData === false &&
       this.props.dogsCurrentlyInGame.length > 0 &&
       this.props.dogList.length > 0
     ) {
       this.setState({ currentBreed: this.props.dogsCurrentlyInGame[0][0] });
-      hasRightData = true;
+      hasData = true;
     }
   };
 
@@ -36,6 +36,7 @@ class BreedQuestion extends Component {
 
     if (answer1 !== undefined) {
       return [
+
         <div className="answer"  onClick={this.wrongAnswerClicked}>
           {answer1}
         </div>,
@@ -57,7 +58,7 @@ class BreedQuestion extends Component {
   };
 
   render() {
-    if (hasRightData === false) {
+    if (hasData === false) {
       return false;
     } else {
       return (
