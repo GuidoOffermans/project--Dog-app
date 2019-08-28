@@ -1,8 +1,18 @@
-
+.alphabet-picker {
+  display: flex;
+  padding-right: 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  height: 100vh;
+  font-size: 1rem;
+}
 
 #dogList-main{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center; 
