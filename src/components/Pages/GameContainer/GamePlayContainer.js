@@ -12,7 +12,7 @@ import GetQuestion from '../../GameComponents/Question components/GetQuestion/Ge
 
 class GameContainer extends Component {
 	state = {
-		currentGameType: 'breed',
+		currentGameType: 'breedS',
     hasRightData: false,
     currentBreed: ''
 	};
@@ -20,27 +20,9 @@ class GameContainer extends Component {
 	componentDidMount = () => {
     const chunkedDogs = chunkify(shuffleArray(this.props.dogList));
     this.props.setChunkedDogs(chunkedDogs)
-    this.props.setCurrentBreed('doggo')
+    this.props.setCurrentBreed('bulldog')
     
 	}
-
-	// componentDidUpdate = () => {
-  //   // console.log('chunkeddogs[]',this.props.chunkedDogs[0][0])
-  //   if (this.props.chunkedDogs.currentBreed !== 'doggo') {
-  //     this.props.setCurrentBreed('doggo')
-  //   }
-    
-	// 	if (
-	// 		this.state.hasRightData === false &&
-	// 		this.props.dogList.length > 0
-	// 	) {
-	// 		this.setState({
-	// 			currentBreed: this.props.chunkedDogs.currentBreed,
-	// 			hasRightData: true
-  //     });
-      
-	// 	}
-	// };
 
 	render() {
     console.log('props',this.props)
@@ -54,6 +36,7 @@ class GameContainer extends Component {
 				</header>
 				<main>
 					<GetQuestion
+            currentBreed={this.props.currentBreed}
 						dogsCurrentlyInGame={this.state.dogsCurrentlyInGame}
 						currentGameType={this.state.currentGameType}
 					/>
