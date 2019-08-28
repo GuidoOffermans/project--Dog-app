@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import DogPicture from "../../Layout/DogPicture/DogPicture";
+import DogPicture from "../../DogPicture/DogPicture";
 
-let statesSet = false;
+let hasRightData = false;
 
 class BreedQuestion extends Component {
   state = {
@@ -17,12 +17,12 @@ class BreedQuestion extends Component {
   function can continue.*/
   componentDidUpdate = () => {
     if (
-      statesSet === false &&
+      hasRightData === false &&
       this.props.dogsCurrentlyInGame.length > 0 &&
       this.props.dogList.length > 0
     ) {
       this.setState({ currentBreed: this.props.dogsCurrentlyInGame[0][0] });
-      statesSet = true;
+      hasRightData = true;
     }
   };
 
@@ -48,10 +48,10 @@ class BreedQuestion extends Component {
 
     if (answer1 !== undefined) {
       return [
-        <div className="answer" onClick={this.wrongAnswerClicked}>
+        <div className="answer" key='1' onClick={this.wrongAnswerClicked}>
           {answer1}
         </div>,
-        <div className="answer" onClick={this.wrongAnswerClicked}>
+        <div className="answer" key='2' onClick={this.wrongAnswerClicked}>
           {answer2}
         </div>
       ];
@@ -83,7 +83,7 @@ class BreedQuestion extends Component {
   get two random, unique answers from the dogList array by calling
   the getTwoRandomBreeds function */
   render() {
-    if (statesSet === false) {
+    if (hasRightData === false) {
       return false;
     } else {
       return (

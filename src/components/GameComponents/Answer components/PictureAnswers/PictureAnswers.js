@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 
-import DogPicture from "../../Layout/DogPicture/DogPicture";
+import DogPicture from "../../DogPicture/DogPicture";
 
 class PictureAnswers extends Component {
   render() {

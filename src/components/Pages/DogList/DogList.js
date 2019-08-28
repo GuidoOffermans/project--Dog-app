@@ -19,8 +19,8 @@ export class DogList extends Component {
           <Logo />
         </header>
         <main id='dogList-main'>
-          {listOfDogs.map(dog => {
-            return <Link className="link" to={"/dog-list/" + dog}>{dog}</Link>
+          {listOfDogs.map((dog, index) => {
+            return <Link key={index} className="link" to={"/dog-list/" + dog}>{dog}</Link>
           })}
         </main>
       </div>
