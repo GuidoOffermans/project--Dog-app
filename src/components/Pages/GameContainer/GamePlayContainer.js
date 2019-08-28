@@ -18,8 +18,8 @@ class GameContainer extends Component {
   componentDidMount = () => {
     const chunkedDogs = chunkify(shuffleArray(this.props.dogList));
     this.props.setChunkedDogs(chunkedDogs);
-    this.props.setCurrentBreed("bulldog");
-    // this.props.setGameType("breed");
+    this.props.setCurrentBreed(this.props.dogList[3]);
+    // this.props.setGameType("");
   };
 
   render() {
