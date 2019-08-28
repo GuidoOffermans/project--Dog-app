@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { shuffleArray, chunkify } from './dogfunction';
 
 import Logo from '../../Layout/Logo/Logo';
 import BackArrow from '../../Layout/BackArrow/BackArrow';
@@ -7,19 +8,6 @@ import HomeButton from '../../Layout/HomeButton/HomeButton';
 import Score from '../../GameComponents/Score/Score';
 import Hints from '../../GameComponents/Hints/Hints';
 import GetQuestion from '../../GameComponents/GetQuestion/GetQuestion';
-
-/* 
-Functions which together return an array of all
-dogs in a random order. This returned array is then 
-subdivided into arrays of 3, which represent the rounds of the game */
-import { shuffleArray, chunkify } from './dogfunction';
-
-/* 
-Extra component Kelley made. Checks if required prop
-(dogList form redux state) is available). If not, 
-show loading text. If yes, render the actual component below,
-called WithDogsPage,  */
-
 
 class GameContainer extends Component {
 	state = {
@@ -29,11 +17,18 @@ class GameContainer extends Component {
 	};
 
 	componentDidUpdate = () => {
-		if (this.state.hasRightData === false && this.props.dogList.length > 0) {
+		if (
+			this.state.hasRightData === false &&
+			this.props.dogList.length > 0
+		) {
 			const chunkedDogs = chunkify(shuffleArray(this.props.dogList));
-			this.setState({ currentBreed: chunkedDogs[(0)[0]] });
-			this.setState({ dogsCurrentlyInGame: chunkedDogs });
-			this.setState({hasRightData: true})
+			this.setState({
+				currentBreed: chunkedDogs[0][0],
+				dogsCurrentlyInGame: chunkedDogs,
+				hasRightData: true
+			});
+			// this.setState({ dogsCurrentlyInGame: chunkedDogs });
+			// this.setState({hasRightData: true})
 		}
 	};
 
