@@ -7,7 +7,7 @@ import BackArrow from '../../Layout/BackArrow/BackArrow';
 import HomeButton from '../../Layout/HomeButton/HomeButton';
 import Score from '../../GameComponents/Score/Score';
 import Hints from '../../GameComponents/Hints/Hints';
-import GetQuestion from '../../GameComponents/GetQuestion/GetQuestion';
+import GetQuestion from '../../GameComponents/Question components/GetQuestion/GetQuestion';
 
 class GameContainer extends Component {
 	state = {

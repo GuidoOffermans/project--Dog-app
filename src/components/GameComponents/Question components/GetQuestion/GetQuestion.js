@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import BreedQuestion from "../../GameComponents/BreedQuestion/BreedQuestion";
-import PictureQuestion from "../../GameComponents/PictureQuestion/PictureQuestion";
+import BreedQuestion from "../../Question components/BreedQuestion/BreedQuestion";
+import PictureQuestion from "../../Question components/PictureQuestion/PictureQuestion";
 
 class GetQuestion extends Component {
   render() {

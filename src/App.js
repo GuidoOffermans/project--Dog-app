@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 
-import PageContainer from "./components/PageContainer/PageContainer";
+import PageContainer from "./components/Pages/PageContainer/PageContainer";
 
 function App() {
   return (
