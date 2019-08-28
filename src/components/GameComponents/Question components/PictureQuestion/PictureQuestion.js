@@ -5,25 +5,25 @@ import DogPicture from "../../DogPicture/DogPicture";
 let hasData = false;
 
 class PictureQuestion extends Component {
-  state = {
-    currentBreed: ""
-  };
+  // state = {
+  //   currentBreed: ""
+  // };
 
-  componentDidUpdate = () => {
-    if (
-      hasData === false &&
-      this.props.dogsCurrentlyInGame.length > 0 &&
-      this.props.dogList.length > 0
-    ) {
-      this.setState({ currentBreed: this.props.dogsCurrentlyInGame[0][0] });
-      hasData = true;
-    }
-  };
+  // componentDidUpdate = () => {
+  //   if (
+  //     hasData === false &&
+  //     this.props.dogsCurrentlyInGame.length > 0 &&
+  //     this.props.dogList.length > 0
+  //   ) {
+  //     this.setState({ currentBreed: this.props.dogsCurrentlyInGame[0][0] });
+  //     hasData = true;
+  //   }
+  // };
 
   getTwoRandomBreeds = () => {
     const dogList = this.props.dogList;
     const dogListClone = [...dogList];
-    const currentIndex = dogListClone.indexOf(this.state.currentBreed);
+    const currentIndex = dogListClone.indexOf(this.props.currentBreed);
     const answer1Index = Math.floor(Math.random() * dogListClone.length);
 
     dogListClone.splice(currentIndex, 1);
@@ -75,12 +75,12 @@ class PictureQuestion extends Component {
     return (
       <div className="question">
         <React.Fragment>
-          {this.state.currentBreed !== ""
+          {this.props.currentBreed !== ""
             ? [
-                <div className="breedName">{this.state.currentBreed}</div>,
+                <div className="breedName">{this.props.currentBreed}</div>,
                 <div className="answers">
                   <div onClick={this.correctAnswerClicked}>
-                    <DogPicture breed={this.state.currentBreed} />
+                    <DogPicture breed={this.props.currentBreed} />
                   </div>
                   {this.getTwoRandomBreeds()}
                 </div>
@@ -94,7 +94,8 @@ class PictureQuestion extends Component {
 
 const mapStateToProps = state => {
   return {
-    dogList: state.dogList
+    dogList: state.dogList,
+    currentBreed: state.game.currentBreed
   };
 };
 

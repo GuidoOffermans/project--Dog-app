@@ -1,60 +1,60 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { shuffleArray, chunkify } from './dogfunction';
-import { setChunkedDogs, setCurrentBreed } from '../../../redux/actions/gameActions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { shuffleArray, chunkify } from "./dogfunction";
+import {
+  setChunkedDogs,
+  setCurrentBreed,
+  setGameType
+} from "../../../redux/actions/gameActions";
 
-import Logo from '../../Layout/Logo/Logo';
-import BackArrow from '../../Layout/BackArrow/BackArrow';
-import HomeButton from '../../Layout/HomeButton/HomeButton';
-import Score from '../../GameComponents/Score/Score';
-import Hints from '../../GameComponents/Hints/Hints';
-import GetQuestion from '../../GameComponents/Question components/GetQuestion/GetQuestion';
+import Logo from "../../Layout/Logo/Logo";
+import BackArrow from "../../Layout/BackArrow/BackArrow";
+import HomeButton from "../../Layout/HomeButton/HomeButton";
+import Score from "../../GameComponents/Score/Score";
+import Hints from "../../GameComponents/Hints/Hints";
+import GetQuestion from "../../GameComponents/Question components/GetQuestion/GetQuestion";
 
 class GameContainer extends Component {
-	state = {
-		currentGameType: 'breedS',
-    hasRightData: false,
-    currentBreed: ''
-	};
-
-	componentDidMount = () => {
+  componentDidMount = () => {
     const chunkedDogs = chunkify(shuffleArray(this.props.dogList));
-    this.props.setChunkedDogs(chunkedDogs)
-    this.props.setCurrentBreed('bulldog')
-    
-	}
+    this.props.setChunkedDogs(chunkedDogs);
+    this.props.setCurrentBreed("bulldog");
+    // this.props.setGameType("breed");
+  };
 
-	render() {
-    console.log('props',this.props)
-		return (
-			<div>
-				<header>
-					<BackArrow />
-					<HomeButton />
-					<Logo />
-					<Score />
-				</header>
-				<main>
-					<GetQuestion
+  render() {
+    console.log("props", this.props);
+    return (
+      <div>
+        <header>
+          <BackArrow />
+          <HomeButton />
+          <Logo />
+          <Score />
+        </header>
+        <main>
+          <GetQuestion
             currentBreed={this.props.currentBreed}
-						dogsCurrentlyInGame={this.state.dogsCurrentlyInGame}
-						currentGameType={this.state.currentGameType}
-					/>
-				</main>
-				<footer>
-					<Hints />
-				</footer>
-			</div>
-		);
-	}
+            gameType={this.props.gameType}
+          />
+        </main>
+        <footer>
+          <Hints />
+        </footer>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-	return {
+const mapStateToProps = state => {
+  return {
     dogList: state.dogList,
-    chunkedDogs: state.game
-
-	};
+    chunkedDogs: state.game,
+    gameType: state.game.gameType
+  };
 };
 
-export default connect(mapStateToProps, { setChunkedDogs, setCurrentBreed })(GameContainer);
+export default connect(
+  mapStateToProps,
+  { setChunkedDogs, setCurrentBreed, setGameType }
+)(GameContainer);
