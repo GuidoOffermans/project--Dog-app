@@ -209,7 +209,11 @@ export class DogList extends Component {
           {listOfDogs.reduce(
             (alphabetList, dog) => {
               let dog2 = dog;
-              dog = <Link to={"/dog-list/" + dog}>{dog}</Link>;
+              dog = (
+                <Link to={"/dog-list/" + dog}>
+                  {dog.charAt(0).toUpperCase() + dog.slice(1)}
+                </Link>
+              );
               switch (dog2.toLowerCase().charAt(0)) {
                 case "a":
                   alphabetList[0].splice(
