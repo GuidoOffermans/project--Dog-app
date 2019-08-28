@@ -1,37 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import DogPicture from "../../Layout/DogPicture/DogPicture";
+import DogPicture from "../../DogPicture/DogPicture";
 
-let statesSet = false;
+let hasData = false;
 
 class PictureQuestion extends Component {
   state = {
     currentBreed: ""
   };
 
-  /* 
-  Every time this component gets passed a new prop by GenericGamePage,
-  check whether the dogList and dogsCurrentlyInGame contain any actual data.
-  If yes, set the state, for the current breed (correct answer) and
-  set statesSet to true, so that this only runs once, and the render
-  function can continue.*/
   componentDidUpdate = () => {
     if (
-      statesSet === false &&
+      hasData === false &&
       this.props.dogsCurrentlyInGame.length > 0 &&
       this.props.dogList.length > 0
     ) {
       this.setState({ currentBreed: this.props.dogsCurrentlyInGame[0][0] });
-      statesSet = true;
+      hasData = true;
     }
   };
 
-  /* 
-  Get array of all dogs from props, and clone it. Remove current breed
-  (correct answer) from this array. Get entry from random index from
-  this array. This is answer 1. Remove the entry of answer 1 from array.
-  Get another random entry (answer 2) from array. Return dogPicture
-  components with these answers to the render function. */
   getTwoRandomBreeds = () => {
     const dogList = this.props.dogList;
     const dogListClone = [...dogList];
@@ -92,7 +80,6 @@ class PictureQuestion extends Component {
                 <div className="breedName">{this.state.currentBreed}</div>,
                 <div className="answers">
                   <div onClick={this.correctAnswerClicked}>
-
                     <DogPicture breed={this.state.currentBreed} />
                   </div>
                   {this.getTwoRandomBreeds()}

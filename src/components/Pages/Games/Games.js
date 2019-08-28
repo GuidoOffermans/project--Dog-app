@@ -14,13 +14,13 @@ class Games extends Component {
 					<Logo />
 				</header>
 				<main>
-					<Link className="link" to="/games/guess-the-breed">
+					<Link className="link" to="/games/play">
 						Guess the breed
 					</Link>
-					<Link className="link" to="games/guess-the-picture">
+					<Link className="link" to="games/play">
 						Guess the picture
 					</Link>
-					<Link className="link" to="/games/guess-picture-or-breed">
+					<Link className="link" to="/games/play">
 						Guess both
 					</Link>
 				</main>

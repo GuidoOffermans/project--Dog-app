@@ -1,37 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import DogPicture from "../../Layout/DogPicture/DogPicture";
+import DogPicture from "../../DogPicture/DogPicture";
 
-let statesSet = false;
+let hasData = false;
 
 class BreedQuestion extends Component {
   state = {
     currentBreed: ""
   };
 
-  /* 
-  Every time this component gets passed a new prop by GenericGamePage,
-  check whether the dogList and dogsCurrentlyInGame contain any actual data.
-  If yes, set the state, for the current breed (correct answer) and
-  set statesSet to true, so that this only runs once, and the render
-  function can continue.*/
   componentDidUpdate = () => {
     if (
-      statesSet === false &&
+      hasData === false &&
       this.props.dogsCurrentlyInGame.length > 0 &&
       this.props.dogList.length > 0
     ) {
       this.setState({ currentBreed: this.props.dogsCurrentlyInGame[0][0] });
-      statesSet = true;
+      hasData = true;
     }
   };
 
-  /* 
-  Get array of all dogs from props, and clone it. Remove current breed
-  (correct answer) from this array. Get entry from random index from
-  this array. This is answer 1. Remove the entry of answer 1 from array.
-  Get another random entry (answer 2) from array. Return divs with these
-  answers to the render function. */
   getTwoRandomBreeds = () => {
     const dogList = this.props.dogList;
     const dogListClone = [...dogList];
@@ -48,10 +36,11 @@ class BreedQuestion extends Component {
 
     if (answer1 !== undefined) {
       return [
-        <div className="answer" onClick={this.wrongAnswerClicked}>
+
+        <div className="answer"  onClick={this.wrongAnswerClicked}>
           {answer1}
         </div>,
-        <div className="answer" onClick={this.wrongAnswerClicked}>
+        <div className="answer"  onClick={this.wrongAnswerClicked}>
           {answer2}
         </div>
       ];
@@ -60,30 +49,16 @@ class BreedQuestion extends Component {
     }
   };
 
-
-  /* 
-  We know the first answer div returned in the render method,
-  is the right one. This function is bound via onClick to that div. */
   correctAnswerClicked = () => {
     alert("That's the right answer!");
   };
 
-  /* 
-  We know the two answers returned by getTwoRandomBreeds() are wrong.
-  This function is bound to them via onClick */
   wrongAnswerClicked = () => {
     alert("That's the wrong answer!");
   };
 
-  /* 
-  Checks for same flag as componenDidUpdate. Return nothing
-  if the required props and state are not available yet. 
-  If they are available, return the picture for the current breed,
-  and return one answer div with this breed as its content. Then
-  get two random, unique answers from the dogList array by calling
-  the getTwoRandomBreeds function */
   render() {
-    if (statesSet === false) {
+    if (hasData === false) {
       return false;
     } else {
       return (
