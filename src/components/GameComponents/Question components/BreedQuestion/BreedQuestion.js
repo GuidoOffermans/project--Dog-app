@@ -1,89 +1,78 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import DogPicture from "../../DogPicture/DogPicture";
-
-let hasData = false;
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import DogPicture from '../../DogPicture/DogPicture';
 
 class BreedQuestion extends Component {
-  state = {
-    currentBreed: ""
-  };
+	getTwoRandomBreeds = () => {
+		const dogList = this.props.dogList;
+		const dogListClone = [ ...dogList ];
+		const currentIndex = dogListClone.indexOf(this.props.currentBreed);
+		const answer1Index = Math.floor(Math.random() * dogListClone.length);
 
-  componentDidUpdate = () => {
-    if (
-      hasData === false &&
-      this.props.dogsCurrentlyInGame.length > 0 &&
-      this.props.dogList.length > 0
-    ) {
-      this.setState({ currentBreed: this.props.dogsCurrentlyInGame[0][0] });
-      hasData = true;
-    }
-  };
+		dogListClone.splice(currentIndex, 1);
 
-  getTwoRandomBreeds = () => {
-    const dogList = this.props.dogList;
-    const dogListClone = [...dogList];
-    const currentIndex = dogListClone.indexOf(this.state.currentBreed);
-    const answer1Index = Math.floor(Math.random() * dogListClone.length);
+		let answer1 = dogListClone[answer1Index];
 
-    dogListClone.splice(currentIndex, 1);
+		dogListClone.splice(answer1Index, 1);
 
-    let answer1 = dogListClone[answer1Index];
+		let answer2 =
+			dogListClone[Math.floor(Math.random() * dogListClone.length)];
 
-    dogListClone.splice(answer1Index, 1);
+		if (answer1 !== undefined) {
+			return [
+				<div className="answer" onClick={this.wrongAnswerClicked}>
+					{answer1}
+				</div>,
+				<div className="answer" onClick={this.wrongAnswerClicked}>
+					{answer2}
+				</div>
+			];
+		} else {
+			return false;
+		}
+	};
 
-    let answer2 = dogListClone[Math.floor(Math.random() * dogListClone.length)];
+	correctAnswerClicked = () => {
+		alert("That's the right answer!");
+	};
 
-    if (answer1 !== undefined) {
-      return [
+	wrongAnswerClicked = () => {
+		alert("That's the wrong answer!");
+	};
 
-        <div className="answer"  onClick={this.wrongAnswerClicked}>
-          {answer1}
-        </div>,
-        <div className="answer"  onClick={this.wrongAnswerClicked}>
-          {answer2}
-        </div>
-      ];
-    } else {
-      return false;
-    }
-  };
-
-  correctAnswerClicked = () => {
-    alert("That's the right answer!");
-  };
-
-  wrongAnswerClicked = () => {
-    alert("That's the wrong answer!");
-  };
-
-  render() {
-    if (hasData === false) {
-      return false;
-    } else {
-      return (
-        <div className="question">
-          <React.Fragment>
-            {[
-              <DogPicture breed={this.state.currentBreed} />,
-              <div className="answers">
-                <div className="answer" onClick={this.correctAnswerClicked}>
-                  {this.state.currentBreed}
-                </div>
-                {this.getTwoRandomBreeds()}
-              </div>
-            ]}
-          </React.Fragment>
-        </div>
-      );
-    }
-  }
+	render() {
+		return (
+			<div className="question">
+				<React.Fragment>
+					{[
+						<div>
+							{this.props.currentBreed.length > 0 ? (
+								<DogPicture breed={this.props.currentBreed} />
+							) : (
+								false
+							)}
+						</div>,
+						<div className="answers">
+							<div
+								className="answer"
+								onClick={this.correctAnswerClicked}
+							>
+								{this.props.currentBreed}
+							</div>
+							{this.getTwoRandomBreeds()}
+						</div>
+					]}
+				</React.Fragment>
+			</div>
+		);
+	}
 }
 
-const mapStateToProps = state => {
-  return {
-    dogList: state.dogList
-  };
+const mapStateToProps = (state) => {
+	return {
+		dogList: state.dogList,
+		currentBreed: state.game.currentBreed
+	};
 };
 
 export default connect(mapStateToProps)(BreedQuestion);
