@@ -82,6 +82,7 @@ class PictureQuestion extends Component {
   get two random, unique DogPictures from the dogList array by calling
   the getTwoRandomBreeds function. All the returned DogPicture 
   components are wrapped in a div, so that we can bind onClick to them. */
+
   render() {
     return (
       <div className="question">
@@ -91,6 +92,7 @@ class PictureQuestion extends Component {
                 <div className="breedName">{this.state.currentBreed}</div>,
                 <div className="answers">
                   <div onClick={this.correctAnswerClicked}>
+
                     <DogPicture breed={this.state.currentBreed} />
                   </div>
                   {this.getTwoRandomBreeds()}

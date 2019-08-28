@@ -60,6 +60,7 @@ class BreedQuestion extends Component {
     }
   };
 
+
   /* 
   We know the first answer div returned in the render method,
   is the right one. This function is bound via onClick to that div. */
