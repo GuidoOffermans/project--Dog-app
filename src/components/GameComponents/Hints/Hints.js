@@ -1,9 +1,25 @@
 import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
 
 class Hints extends Component {
+  state = { showHint: false };
+  handleClick = () => {
+    this.setState({ showHint: true });
+  };
+  getFirstLetterOfBreed = breed => {
+    return breed.slice(0, 1);
+  };
   render() {
-    return false;
+    console.log(this.props);
+    return (
+      <div>
+        <button type="button" onClick={this.handleClick}>
+          GET HINT
+        </button>
+        {this.state.showHint && (
+          <div>{this.getFirstLetterOfBreed("cutie")}</div>
+        )}
+      </div>
+    );
   }
 }
 

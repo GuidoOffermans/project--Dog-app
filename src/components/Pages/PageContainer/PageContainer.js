@@ -3,15 +3,14 @@ import "./PageContainer.css";
 import { Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
-import HomePage from "../Pages/HomePage/HomePage";
-import Games from "../Pages/Games/Games";
-import DogList from "../Pages/DogList/DogList";
-import DogDetail from "../Pages/DogDetail/DogDetail";
-import GuessBreedGame from "../Pages/GuessBreedGame/GuessBreedGame";
-import GuessPictureGame from "../Pages/GuessPictureGame/GuessPictureGame";
-import GuessPictureOrBreed from "../Pages/GuessPictureOrBreed/GuessPictureOrBreed";
+import HomePage from "../HomePage/HomePage";
+import Games from "../Games/Games";
+import DogList from "../DogList/DogList";
+import DogDetail from "../DogDetail/DogDetail";
+import GameContainer from "../GameContainer/GameContainer"
 
-import { setDogs, getDogs } from "../../redux/actions/dogListActions";
+
+import { getDogs } from "../../../redux/actions/dogListActions";
 
 class PageContainer extends Component {
   componentDidMount() {
@@ -26,9 +25,7 @@ class PageContainer extends Component {
           <Route exact path="/games" component={Games} />
           <Route exact path="/dog-list" component={DogList} />
           <Route path="/dog-list/:breed" component={DogDetail} />
-          <Route path="/games/guess-the-breed" component={GuessBreedGame} />
-          <Route path="/games/guess-the-picture" component={GuessPictureGame} />
-          <Route path="/games/guess-picture-or-breed" component={GuessPictureOrBreed} />
+          <Route path="/games/play" component={GameContainer} />
         </Switch>
       </div>
     );

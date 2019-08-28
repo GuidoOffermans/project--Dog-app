@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
+import HomeButton from "../../Layout/HomeButton/HomeButton";
 
 import { getImages } from "../../../redux/actions/imagesAction";
 
@@ -18,11 +18,12 @@ class DogDetail extends Component {
         <header>
           <Logo />
           <BackArrow />
+          <HomeButton />
         </header>
         <main>
           Dog Details
           {this.props.images.map((image, index) =>
-            index < 10 ? <img src={image} alt="dog" /> : false
+            index < 10 ? <img key={index} src={image} alt="dog" /> : false
           )}
         </main>
       </div>
