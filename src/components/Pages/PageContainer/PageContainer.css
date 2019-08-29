@@ -72,11 +72,19 @@ header {
 
 footer {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   left: 0;
   bottom: 0;
   font-size: 1rem;
+  height: 3rem;
   padding: 1rem;
   color: white;
   background-color: rgba(0,0,0,0.5);
+}
+
+.answers {
+  margin-bottom: 7rem;
 }
