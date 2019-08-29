@@ -37,9 +37,13 @@ class BreedQuestion extends Component {
 
     let answer1 = dogListClone[answer1Index];
 
+    let answer1Capitalized = answer1.charAt(0).toUpperCase() + answer1.slice(1);
+
     dogListClone.splice(answer1Index, 1);
 
     let answer2 = dogListClone[Math.floor(Math.random() * dogListClone.length)];
+
+    let answer2Capitalized = answer2.charAt(0).toUpperCase() + answer2.slice(1);
 
     if (answer1 !== undefined) {
       return [
@@ -48,14 +52,14 @@ class BreedQuestion extends Component {
           className="answer"
           onClick={this.wrongAnswerClicked}
         >
-          {answer1}
+          {answer1Capitalized}
         </div>,
         <div
           style={style3}
           className="answer"
           onClick={this.wrongAnswerClicked}
         >
-          {answer2}
+          {answer2Capitalized}
         </div>
       ];
     } else {
@@ -82,6 +86,7 @@ class BreedQuestion extends Component {
     const style1 = { order: cssOrder[0] };
     const style2 = { order: cssOrder[1] };
     const style3 = { order: cssOrder[2] };
+    const currentBreed = this.props.currentBreed;
 
     return (
       <div id="breed-question" className="question">
@@ -100,7 +105,7 @@ class BreedQuestion extends Component {
                 className="answer"
                 onClick={this.correctAnswerClicked}
               >
-                {this.props.currentBreed}
+                {currentBreed.charAt(0).toUpperCase() + currentBreed.slice(1)}
               </div>
               {this.getTwoRandomBreeds(style2, style3)}
             </div>
