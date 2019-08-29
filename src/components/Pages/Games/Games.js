@@ -25,12 +25,16 @@ class Games extends Component {
           </Link>
           <Link
             className="link"
-            to="games/play"
+            to="/games/play"
             onClick={() => this.props.setGameType("picture")}
           >
             Guess the picture
           </Link>
-          <Link className="link" to="/games/play">
+          <Link
+            className="link"
+            to="/games/play"
+            onClick={() => this.props.setGameType("mixed")}
+          >
             Guess both
           </Link>
         </main>

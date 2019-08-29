@@ -10,7 +10,7 @@ class DogPicture extends Component {
 		request(
 			'https://dog.ceo/api/breed/' + this.props.breed + '/images/random'
 		).then((response) => {
-			console.log('response', response);
+			// console.log('response', response);
 			this.setState({ src: response.body.message });
 		});
 	};

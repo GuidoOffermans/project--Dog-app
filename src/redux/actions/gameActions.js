@@ -16,6 +16,15 @@ export function setCurrentBreed(dog) {
   };
 }
 
+export const SET_NEXT_QUESTION = "SET_NEXT_QUESTION";
+
+export function setNextQuestion(boolean) {
+  return {
+    type: SET_NEXT_QUESTION,
+    payload: boolean
+  };
+}
+
 export const SET_GAME_TYPE = "SET_GAME_TYPE";
 export function setGameType(gameType) {
   return {

@@ -8,9 +8,13 @@ class GetQuestion extends Component {
   render() {
     return this.props.currentBreed !== "" ? (
       this.props.gameType === "breed" ? (
-        <BreedQuestion dogsCurrentlyInGame={this.props.dogsCurrentlyInGame} />
+        <BreedQuestion
+          dogsCurrentlyInGame={this.props.dogsCurrentlyInGame}
+        />
       ) : (
-        <PictureQuestion dogsCurrentlyInGame={this.props.dogsCurrentlyInGame} />
+        <PictureQuestion
+          dogsCurrentlyInGame={this.props.dogsCurrentlyInGame}
+        />
       )
     ) : (
       false

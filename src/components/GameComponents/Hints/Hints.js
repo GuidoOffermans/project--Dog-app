@@ -9,7 +9,7 @@ class Hints extends Component {
     return breed.slice(0, 1);
   };
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
         <button type="button" onClick={this.handleClick}>

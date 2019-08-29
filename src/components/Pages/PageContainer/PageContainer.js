@@ -25,7 +25,7 @@ class PageContainer extends Component {
           <Route exact path="/games" component={Games} />
           <Route exact path="/dog-list" component={DogList} />
           <Route path="/dog-list/:breed" component={DogDetail} />
-          <Route path="/games/play" component={GameContainer} />
+          <Route exact path="/games/play" component={GameContainer} />
         </Switch>
       </div>
     );

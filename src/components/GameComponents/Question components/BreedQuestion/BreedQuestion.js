@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DogPicture from '../../DogPicture/DogPicture';
-import { setCurrentBreed } from '../../../../redux/actions/gameActions';
+import { setCurrentBreed, setNextQuestion } from '../../../../redux/actions/gameActions';
 
 let index = 0;
 class BreedQuestion extends Component {
@@ -36,10 +36,11 @@ class BreedQuestion extends Component {
 	};
 
 	correctAnswerClicked = () => {
-		// alert("That's the right answer!");
+		alert("That's the right answer!");
 		index = index + 1;
 		const nextDog = this.props.dogList[index];
 		this.props.setCurrentBreed(nextDog);
+		this.props.setNextQuestion(true)
 	};
 
 	wrongAnswerClicked = () => {
@@ -81,4 +82,4 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { setCurrentBreed })(BreedQuestion);
+export default connect(mapStateToProps, { setCurrentBreed, setNextQuestion })(BreedQuestion);
