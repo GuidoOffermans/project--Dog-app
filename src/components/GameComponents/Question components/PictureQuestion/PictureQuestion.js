@@ -7,26 +7,12 @@ import {
   setNextQuestion,
   addNextChunk
 } from "../../../../redux/actions/gameActions";
+import {shuffleArray }from '../../../Pages/GameContainer/dogfunction'
 import { setScore } from "../../../../redux/actions/scoreAction";
 import "./PictureQuestion.css";
 
 class PictureQuestion extends Component {
-  shuffleArray = array => {
-    let currentIndex = array.length;
-    let temporaryValue, randomIndex;
-
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  };
-
+  
   getTwoRandomBreeds = (style2, style3) => {
     const dogList = this.props.dogList;
     const dogListClone = [...dogList];
@@ -90,7 +76,7 @@ class PictureQuestion extends Component {
   };
 
   render() {
-    const cssOrder = this.shuffleArray([1, 2, 3]);
+    const cssOrder = shuffleArray([1, 2, 3]);
 
     const style1 = { order: cssOrder[0] };
     const style2 = { order: cssOrder[1] };
