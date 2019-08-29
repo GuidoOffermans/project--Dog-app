@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import "./BreedQuestion.css"
 import DogPicture from '../../DogPicture/DogPicture';
+import { selectNext } from '../../../Pages/GameContainer/dogfunction';
 import { setCurrentBreed, setNextQuestion } from '../../../../redux/actions/gameActions';
 
-let index = 0;
 class BreedQuestion extends Component {
 	state = { hi: '' };
 	getTwoRandomBreeds = () => {
@@ -37,9 +37,10 @@ class BreedQuestion extends Component {
 	};
 
 	correctAnswerClicked = () => {
+    const fiveInARow = true;
 		alert("That's the right answer!");
-		index = index + 1;
-		const nextDog = this.props.dogList[index];
+    const nextDog = selectNext(this.props.currentDogpool, fiveInARow)
+    console.log(nextDog)
 		this.props.setCurrentBreed(nextDog);
 		this.props.setNextQuestion(true)
 	};
@@ -55,7 +56,7 @@ class BreedQuestion extends Component {
 				<React.Fragment>
 					{[
 						<div>
-							{this.props.currentBreed.length > 0 ? (
+							{this.props.currentBreed !== '' ? (
 								<DogPicture breed={this.props.currentBreed} />
 							) : (
 								false
@@ -80,7 +81,9 @@ class BreedQuestion extends Component {
 const mapStateToProps = (state) => {
 	return {
 		dogList: state.dogList,
-		currentBreed: state.game.currentBreed
+    currentBreed: state.game.currentBreed,
+    chunkedDogs: state.game.chunkedDogs,
+    currentDogpool: state.game.currentDogpool
 	};
 };
 
