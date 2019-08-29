@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./BreedQuestion.css";
 import DogPicture from "../../DogPicture/DogPicture";
 import {
   setCurrentBreed,
@@ -16,7 +17,23 @@ class BreedQuestion extends Component {
     });
   }
 
-  getTwoRandomBreeds = () => {
+  shuffleArray = array => {
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  };
+
+  getTwoRandomBreeds = (style2, style3) => {
     const dogList = this.props.dogList;
     const dogListClone = [...dogList];
     const currentIndex = dogListClone.indexOf(this.props.currentBreed);
@@ -26,17 +43,29 @@ class BreedQuestion extends Component {
 
     let answer1 = dogListClone[answer1Index];
 
+    let answer1Capitalized = answer1.charAt(0).toUpperCase() + answer1.slice(1);
+
     dogListClone.splice(answer1Index, 1);
 
     let answer2 = dogListClone[Math.floor(Math.random() * dogListClone.length)];
 
+    let answer2Capitalized = answer2.charAt(0).toUpperCase() + answer2.slice(1);
+
     if (answer1 !== undefined) {
       return [
-        <div className="answer" onClick={this.wrongAnswerClicked}>
-          {answer1}
+        <div
+          style={style2}
+          className="answer"
+          onClick={this.wrongAnswerClicked}
+        >
+          {answer1Capitalized}
         </div>,
-        <div className="answer" onClick={this.wrongAnswerClicked}>
-          {answer2}
+        <div
+          style={style3}
+          className="answer"
+          onClick={this.wrongAnswerClicked}
+        >
+          {answer2Capitalized}
         </div>
       ];
     } else {
@@ -68,8 +97,15 @@ class BreedQuestion extends Component {
   };
 
   render() {
+    const cssOrder = this.shuffleArray([1, 2, 3]);
+
+    const style1 = { order: cssOrder[0] };
+    const style2 = { order: cssOrder[1] };
+    const style3 = { order: cssOrder[2] };
+    const currentBreed = this.props.currentBreed;
+
     return (
-      <div className="question">
+      <div id="breed-question" className="question">
         <React.Fragment>
           {[
             <div>
@@ -80,10 +116,14 @@ class BreedQuestion extends Component {
               )}
             </div>,
             <div className="answers">
-              <div className="answer" onClick={this.correctAnswerClicked}>
-                {this.props.currentBreed}
+              <div
+                style={style1}
+                className="answer"
+                onClick={this.correctAnswerClicked}
+              >
+                {currentBreed.charAt(0).toUpperCase() + currentBreed.slice(1)}
               </div>
-              {this.getTwoRandomBreeds()}
+              {this.getTwoRandomBreeds(style2, style3)}
             </div>
           ]}
         </React.Fragment>

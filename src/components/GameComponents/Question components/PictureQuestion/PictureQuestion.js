@@ -6,6 +6,8 @@ import {
   setNextQuestion
 } from "../../../../redux/actions/gameActions";
 import { setScore } from "../../../../redux/actions/scoreAction";
+import "./PictureQuestion.css";
+
 let index = 0;
 
 class PictureQuestion extends Component {
@@ -16,7 +18,23 @@ class PictureQuestion extends Component {
     });
   }
 
-  getTwoRandomBreeds = () => {
+  shuffleArray = array => {
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  };
+
+  getTwoRandomBreeds = (style2, style3) => {
     const dogList = this.props.dogList;
     const dogListClone = [...dogList];
     const currentIndex = dogListClone.indexOf(this.props.currentBreed);
@@ -32,10 +50,10 @@ class PictureQuestion extends Component {
 
     if (answer1 !== undefined) {
       return [
-        <div onClick={this.wrongAnswerClicked}>
+        <div style={style2} onClick={this.wrongAnswerClicked}>
           <DogPicture breed={answer1} />
         </div>,
-        <div onClick={this.wrongAnswerClicked}>
+        <div style={style3} onClick={this.wrongAnswerClicked}>
           <DogPicture breed={answer2} />
         </div>
       ];
@@ -68,17 +86,26 @@ class PictureQuestion extends Component {
   };
 
   render() {
+    const cssOrder = this.shuffleArray([1, 2, 3]);
+
+    const style1 = { order: cssOrder[0] };
+    const style2 = { order: cssOrder[1] };
+    const style3 = { order: cssOrder[2] };
+    const currentBreed = this.props.currentBreed;
+
     return (
-      <div className="question">
+      <div id="picture-question" className="question">
         <React.Fragment>
           {this.props.currentBreed !== ""
             ? [
-                <div className="breedName">{this.props.currentBreed}</div>,
+                <div className="breedName">
+                  {currentBreed.charAt(0).toUpperCase() + currentBreed.slice(1)}
+                </div>,
                 <div className="answers">
-                  <div onClick={this.correctAnswerClicked}>
+                  <div style={style1} onClick={this.correctAnswerClicked}>
                     <DogPicture breed={this.props.currentBreed} />
                   </div>
-                  {this.getTwoRandomBreeds()}
+                  {this.getTwoRandomBreeds(style2, style3)}
                 </div>
               ]
             : false}
