@@ -32,3 +32,12 @@ export function setGameType(gameType) {
     payload: gameType
   };
 }
+
+
+export const ADD_NEXT_CHUNK = "ADD_NEXT_CHUNK";
+export function addNextChunk() {
+  console.log('next chunk')
+  return {
+    type: ADD_NEXT_CHUNK
+  };
+}

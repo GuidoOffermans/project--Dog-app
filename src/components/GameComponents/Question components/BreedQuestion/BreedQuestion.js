@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./BreedQuestion.css";
-import DogPicture from "../../DogPicture/DogPicture";
-import {
-  setCurrentBreed,
-  setNextQuestion
-} from "../../../../redux/actions/gameActions";
+
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import "./BreedQuestion.css"
+import DogPicture from '../../DogPicture/DogPicture';
+import { selectNext } from '../../../Pages/GameContainer/dogfunction';
+import { setCurrentBreed, setNextQuestion } from '../../../../redux/actions/gameActions';
 import { setScore } from "../../../../redux/actions/scoreAction";
 
-let index = 0;
+
 class BreedQuestion extends Component {
+	
   shuffleArray = array => {
     let currentIndex = array.length;
     let temporaryValue, randomIndex;

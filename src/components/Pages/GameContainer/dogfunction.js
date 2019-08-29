@@ -1,4 +1,3 @@
-
 function shuffleArray(array) {
 	let currentIndex = array.length;
 	let temporaryValue, randomIndex;
@@ -26,4 +25,19 @@ function chunkify(arr) {
 	return temporal;
 }
 
-module.exports = {chunkify, shuffleArray}
+let arrayIndex = 0;
+let index = 0;
+let nextDog = '';
+
+
+const selectNext = (chunkedDogsArray, fiveInARow) => {
+	if (index < chunkedDogsArray.length - 1) {
+		index += 1;
+		nextDog = chunkedDogsArray[index];
+	} else {
+		index = 0;
+		nextDog =  chunkedDogsArray[0];
+	}
+	return nextDog;
+};
+module.exports = { chunkify, shuffleArray, selectNext };
