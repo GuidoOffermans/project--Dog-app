@@ -35,4 +35,5 @@ const selectNext = (dogPoolArray, currentBreed) => {
 	}
 	return dogPoolCopy[randomIndex];
 };
+
 module.exports = { chunkify, shuffleArray, selectNext };
