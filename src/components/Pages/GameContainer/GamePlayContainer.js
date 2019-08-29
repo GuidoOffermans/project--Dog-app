@@ -30,7 +30,8 @@ class GameContainer extends Component {
    
     this.props.setScore({
       questionsAsked: 0,
-      correctAnswers: 0
+	  correctAnswers: 0,
+	  correctAnswersInARow: 0
     });
 
     if (this.props.gameType === "mixed") {
