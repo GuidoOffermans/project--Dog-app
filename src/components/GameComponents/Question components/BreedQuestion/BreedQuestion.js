@@ -10,13 +10,6 @@ import { setScore } from "../../../../redux/actions/scoreAction";
 
 let index = 0;
 class BreedQuestion extends Component {
-  componentDidMount() {
-    this.props.setScore({
-      questionsAsked: 0,
-      correctAnswers: 0
-    });
-  }
-
   shuffleArray = array => {
     let currentIndex = array.length;
     let temporaryValue, randomIndex;

@@ -3,21 +3,20 @@ import { connect } from "react-redux";
 
 class Score extends Component {
   displayScore = score => {
-    if (!score) {
+    if (!score || score === Infinity) {
       return " ";
     } else {
-      return score;
+      return score + "%";
     }
   };
 
   render() {
     const score =
-      this.props.score.questionsAsked / (this.props.score.correctAnswers * 100);
-
+      (this.props.score.correctAnswers / this.props.score.questionsAsked) * 100;
     return (
       <div>
         {this.props.score.correctAnswers}/{this.props.score.questionsAsked}
-        <div>{this.displayScore(score)}</div>
+        <div>{this.displayScore(parseInt(score))}</div>
       </div>
     );
   }

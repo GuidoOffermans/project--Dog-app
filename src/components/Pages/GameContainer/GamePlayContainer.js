@@ -7,6 +7,7 @@ import {
   setGameType,
   setNextQuestion
 } from "../../../redux/actions/gameActions";
+import { setScore } from "../../../redux/actions/scoreAction";
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
@@ -24,6 +25,11 @@ class GameContainer extends Component {
     const chunkedDogs = chunkify(shuffleArray(this.props.dogList));
     this.props.setChunkedDogs(chunkedDogs);
     this.props.setCurrentBreed(this.props.dogList[3]);
+
+    this.props.setScore({
+      questionsAsked: 0,
+      correctAnswers: 0
+    });
 
     if (this.props.gameType === "mixed") {
       const gameTypes = ["breed", "picture"];
@@ -91,5 +97,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setChunkedDogs, setCurrentBreed, setGameType, setNextQuestion }
+  { setChunkedDogs, setCurrentBreed, setGameType, setNextQuestion, setScore }
 )(GameContainer);

@@ -11,13 +11,6 @@ import "./PictureQuestion.css";
 let index = 0;
 
 class PictureQuestion extends Component {
-  componentDidMount() {
-    this.props.setScore({
-      questionsAsked: 0,
-      correctAnswers: 0
-    });
-  }
-
   shuffleArray = array => {
     let currentIndex = array.length;
     let temporaryValue, randomIndex;
