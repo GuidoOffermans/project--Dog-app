@@ -1,6 +1,8 @@
 {
   "name": "dog-app",
   "version": "0.1.0",
+  "engines": {
+    "node": "10.16.0"},
   "private": true,
   "dependencies": {
     "animated-scroll-to": "^1.2.2",
