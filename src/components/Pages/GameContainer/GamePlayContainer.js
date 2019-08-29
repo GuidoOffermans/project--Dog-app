@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  setScore,
 	setCurrentBreed,
 	setGameType,
 	setNextQuestion,
@@ -27,6 +28,20 @@ class GameContainer extends Component {
     // console.log(this.props.currentDogpool);
     setTimeout(()=>this.props.setCurrentBreed(this.props.currentDogpool[0]),100)
 		// this.props.setCurrentBreed(this.props.currentDogpool);
+
+    this.props.setScore({
+      questionsAsked: 0,
+      correctAnswers: 0
+    });
+
+    if (this.props.gameType === "mixed") {
+      const gameTypes = ["breed", "picture"];
+      const randomGameType =
+        gameTypes[Math.floor(Math.random() * gameTypes.length)];
+      this.setState({ previousGameType: randomGameType });
+    }
+  };
+
 
 		if (this.props.gameType === 'mixed') {
 			const gameTypes = [ 'breed', 'picture' ];
@@ -95,9 +110,8 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, {
-	setCurrentBreed,
-	setGameType,
-	setNextQuestion,
-	addNextChunk
-})(GameContainer);
+export default connect(
+  mapStateToProps,
+  { setChunkedDogs, setCurrentBreed, setGameType, setNextQuestion, setScore, addNextChunk }
+)(GameContainer);
+

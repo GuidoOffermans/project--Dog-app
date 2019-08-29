@@ -1,90 +1,140 @@
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import "./BreedQuestion.css"
 import DogPicture from '../../DogPicture/DogPicture';
 import { selectNext } from '../../../Pages/GameContainer/dogfunction';
 import { setCurrentBreed, setNextQuestion } from '../../../../redux/actions/gameActions';
+import { setScore } from "../../../../redux/actions/scoreAction";
+
 
 class BreedQuestion extends Component {
-	state = { hi: '' };
-	getTwoRandomBreeds = () => {
-		const dogList = this.props.dogList;
-		const dogListClone = [ ...dogList ];
-		const currentIndex = dogListClone.indexOf(this.props.currentBreed);
-		const answer1Index = Math.floor(Math.random() * dogListClone.length);
+	
+  shuffleArray = array => {
+    let currentIndex = array.length;
+    let temporaryValue, randomIndex;
 
-		dogListClone.splice(currentIndex, 1);
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
 
-		let answer1 = dogListClone[answer1Index];
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
 
-		dogListClone.splice(answer1Index, 1);
+    return array;
+  };
 
-		let answer2 =
-			dogListClone[Math.floor(Math.random() * dogListClone.length)];
+  getTwoRandomBreeds = (style2, style3) => {
+    const dogList = this.props.dogList;
+    const dogListClone = [...dogList];
+    const currentIndex = dogListClone.indexOf(this.props.currentBreed);
+    const answer1Index = Math.floor(Math.random() * dogListClone.length);
 
-		if (answer1 !== undefined) {
-			return [
-				<div className="answer" onClick={this.wrongAnswerClicked}>
-					{answer1}
-				</div>,
-				<div className="answer" onClick={this.wrongAnswerClicked}>
-					{answer2}
-				</div>
-			];
-		} else {
-			return false;
-		}
-	};
+    dogListClone.splice(currentIndex, 1);
 
-	correctAnswerClicked = () => {
-    const fiveInARow = true;
-		alert("That's the right answer!");
-    const nextDog = selectNext(this.props.currentDogpool, fiveInARow)
-    console.log(nextDog)
-		this.props.setCurrentBreed(nextDog);
-		this.props.setNextQuestion(true)
-	};
+    let answer1 = dogListClone[answer1Index];
 
-	wrongAnswerClicked = () => {
-		alert("That's the wrong answer!");
-		this.props.setNextQuestion(true)
-	};
+    dogListClone.splice(answer1Index, 1);
 
-	render() {
-		return (
-			<div id="breed-question" className="question">
-				<React.Fragment>
-					{[
-						<div>
-							{this.props.currentBreed !== '' ? (
-								<DogPicture breed={this.props.currentBreed} />
-							) : (
-								false
-							)}
-						</div>,
-						<div className="answers">
-							<div
-								className="answer"
-								onClick={this.correctAnswerClicked}
-							>
-								{this.props.currentBreed}
-							</div>
-							{this.getTwoRandomBreeds()}
-						</div>
-					]}
-				</React.Fragment>
-			</div>
-		);
-	}
+    let answer2 = dogListClone[Math.floor(Math.random() * dogListClone.length)];
+
+    if (answer1 !== undefined) {
+      let answer1Capitalized =
+        answer1.charAt(0).toUpperCase() + answer1.slice(1);
+      let answer2Capitalized =
+        answer2.charAt(0).toUpperCase() + answer2.slice(1);
+
+      return [
+        <div
+          style={style2}
+          className="answer"
+          onClick={this.wrongAnswerClicked}
+        >
+          {answer1Capitalized}
+        </div>,
+        <div
+          style={style3}
+          className="answer"
+          onClick={this.wrongAnswerClicked}
+        >
+          {answer2Capitalized}
+        </div>
+      ];
+    } else {
+      return false;
+    }
+  };
+
+  correctAnswerClicked = () => {
+    alert("That's the right answer!");
+    index = index + 1;
+    const nextDog = this.props.dogList[index];
+    this.props.setCurrentBreed(nextDog);
+    this.props.setNextQuestion(true);
+    const questionsAsked = this.props.score.questionsAsked;
+    const correctAnswers = this.props.score.correctAnswers;
+    this.props.setScore({
+      questionsAsked: questionsAsked + 1,
+      correctAnswers: correctAnswers + 1
+    });
+  };
+
+  wrongAnswerClicked = () => {
+    alert("That's the wrong answer!");
+    this.props.setNextQuestion(true);
+    const questionsAsked = this.props.score.questionsAsked;
+    this.props.setScore({
+      questionsAsked: questionsAsked + 1
+    });
+  };
+
+  render() {
+    const cssOrder = this.shuffleArray([1, 2, 3]);
+
+    const style1 = { order: cssOrder[0] };
+    const style2 = { order: cssOrder[1] };
+    const style3 = { order: cssOrder[2] };
+    const currentBreed = this.props.currentBreed;
+
+    return (
+      <div id="breed-question" className="question">
+        <React.Fragment>
+          {[
+            <div>
+              {this.props.currentBreed.length > 0 ? (
+                <DogPicture breed={this.props.currentBreed} />
+              ) : (
+                false
+              )}
+            </div>,
+            <div className="answers">
+              <div
+                style={style1}
+                className="answer"
+                onClick={this.correctAnswerClicked}
+              >
+                {currentBreed.charAt(0).toUpperCase() + currentBreed.slice(1)}
+              </div>
+              {this.getTwoRandomBreeds(style2, style3)}
+            </div>
+          ]}
+        </React.Fragment>
+      </div>
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-	return {
-		dogList: state.dogList,
+const mapStateToProps = state => {
+  return {
+    dogList: state.dogList,
     currentBreed: state.game.currentBreed,
-    chunkedDogs: state.game.chunkedDogs,
-    currentDogpool: state.game.currentDogpool
-	};
+    score: state.score
+  };
 };
 
-export default connect(mapStateToProps, { setCurrentBreed, setNextQuestion })(BreedQuestion);
+export default connect(
+  mapStateToProps,
+  { setCurrentBreed, setNextQuestion, setScore }
+)(BreedQuestion);

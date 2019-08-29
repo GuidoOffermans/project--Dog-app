@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import "./DogDetail.css"
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
@@ -20,8 +21,8 @@ class DogDetail extends Component {
           <BackArrow />
           <HomeButton />
         </header>
-        <main>
-          Dog Details
+        <main id="dog-detail">
+          <div class="header">Pictures</div>
           {this.props.images.map((image, index) =>
             index < 10 ? <img key={index} src={image} alt="dog" /> : false
           )}

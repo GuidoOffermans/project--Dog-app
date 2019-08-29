@@ -1,3 +1,8 @@
+#breed-question .answers {
+    display: flex;
+    flex-direction: column;
+}
+
 #breed-question img {
     object-fit: cover;
     width:15rem;
