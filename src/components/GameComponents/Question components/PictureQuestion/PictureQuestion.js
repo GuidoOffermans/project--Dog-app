@@ -4,7 +4,8 @@ import DogPicture from "../../DogPicture/DogPicture";
 import { selectNext } from '../../../Pages/GameContainer/dogfunction';
 import {
   setCurrentBreed,
-  setNextQuestion
+  setNextQuestion,
+  addNextChunk
 } from "../../../../redux/actions/gameActions";
 import { setScore } from "../../../../redux/actions/scoreAction";
 import "./PictureQuestion.css";
@@ -67,7 +68,13 @@ class PictureQuestion extends Component {
 			questionsAsked: questionsAsked + 1,
 			correctAnswers: correctAnswers + 1,
 			correctAnswersInARow: correctAnswersInARow + 1
-		});
+    });
+    if(correctAnswersInARow === 4){
+      this.props.addNextChunk()
+      this.props.setScore({
+        correctAnswersInARow: 0
+      });
+    }
   };
 
   wrongAnswerClicked = () => {
@@ -123,5 +130,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setCurrentBreed, setNextQuestion, setScore }
+  { setCurrentBreed, setNextQuestion, setScore, addNextChunk }
 )(PictureQuestion);
