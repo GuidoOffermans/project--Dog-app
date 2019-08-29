@@ -1,0 +1,29 @@
+#dog-detail {
+  margin: 3rem 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+#dog-detail .header {
+  background-color: #4682b4;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  width: 15rem;
+  margin: 1rem auto;
+  color: white;
+}
+
+#dog-detail img {
+  object-fit: cover;
+  width: 15rem;
+  height: 15rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  margin-bottom: 1rem;
+}
