@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./dogList.css";
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
+import HomeButton from "../../Layout/HomeButton/HomeButton";
 
 export class DogList extends Component {
   generateAlphabet = () => {
@@ -19,24 +19,22 @@ export class DogList extends Component {
       } else {
         result[firstLetter] = [dogName];
       }
-      console.log(result);
       return result;
     }, {});
   };
   render() {
     const listOfDogs = this.groupByLetter();
-    console.log(Object.keys(listOfDogs));
-
     return (
       <div>
         <header>
           <BackArrow />
+          <HomeButton />
           <Logo />
         </header>
         <div className="alphabet-picker">
           {this.generateAlphabet().map(letter => {
             return (
-              <div>
+              <div key={letter}>
                 <a href={`/dog-list#${letter}`}>{letter}</a>
               </div>
             );
@@ -45,11 +43,11 @@ export class DogList extends Component {
         <main id="dogList-main">
           {Object.keys(listOfDogs).map(key => {
             return (
-              <div>
+              <div key={key}>
                 <h3 id={key}>{key}</h3>
                 {listOfDogs[key].map(dog => {
                   return (
-                    <div>
+                    <div key={dog}>
                       <Link to={"/dog-list/" + dog}>
                         {dog.charAt(0).toUpperCase() + dog.slice(1)}
                       </Link>
