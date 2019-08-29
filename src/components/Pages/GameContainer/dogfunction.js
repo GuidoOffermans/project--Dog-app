@@ -25,10 +25,8 @@ function chunkify(arr) {
 	return temporal;
 }
 
-let arrayIndex = 0;
 let index = 0;
 let nextDog = '';
-
 
 const selectNext = (chunkedDogsArray, fiveInARow) => {
 	if (index < chunkedDogsArray.length - 1) {
@@ -36,7 +34,7 @@ const selectNext = (chunkedDogsArray, fiveInARow) => {
 		nextDog = chunkedDogsArray[index];
 	} else {
 		index = 0;
-		nextDog =  chunkedDogsArray[0];
+		nextDog = chunkedDogsArray[0];
 	}
 	return nextDog;
 };

@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import DogPicture from "../../DogPicture/DogPicture";
+import { selectNext } from '../../../Pages/GameContainer/dogfunction';
 import {
   setCurrentBreed,
   setNextQuestion
 } from "../../../../redux/actions/gameActions";
 import { setScore } from "../../../../redux/actions/scoreAction";
 import "./PictureQuestion.css";
-
-let index = 0;
 
 class PictureQuestion extends Component {
   shuffleArray = array => {
@@ -57,8 +56,8 @@ class PictureQuestion extends Component {
 
   correctAnswerClicked = () => {
     alert("That's the right answer!");
-    index = index + 1;
-    const nextDog = this.props.dogList[index];
+    
+    const nextDog = selectNext(this.props.currentDogpool);
     this.props.setCurrentBreed(nextDog);
     this.props.setNextQuestion(true);
     const questionsAsked = this.props.score.questionsAsked;
@@ -112,7 +111,8 @@ const mapStateToProps = state => {
   return {
     dogList: state.dogList,
     currentBreed: state.game.currentBreed,
-    score: state.score
+    score: state.score,
+    currentDogpool: state.game.currentDogpool
   };
 };
 

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  setScore,
 	setCurrentBreed,
 	setGameType,
 	setNextQuestion,
 	addNextChunk
 } from '../../../redux/actions/gameActions';
+import {
+  setScore,
+} from '../../../redux/actions/scoreAction';
 
 import Logo from '../../Layout/Logo/Logo';
 import BackArrow from '../../Layout/BackArrow/BackArrow';
@@ -40,7 +42,7 @@ class GameContainer extends Component {
         gameTypes[Math.floor(Math.random() * gameTypes.length)];
       this.setState({ previousGameType: randomGameType });
     }
-  };
+  
 
 
 		if (this.props.gameType === 'mixed') {
@@ -112,6 +114,6 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  { setChunkedDogs, setCurrentBreed, setGameType, setNextQuestion, setScore, addNextChunk }
+  {  setCurrentBreed, setGameType, setNextQuestion, setScore, addNextChunk }
 )(GameContainer);
 
