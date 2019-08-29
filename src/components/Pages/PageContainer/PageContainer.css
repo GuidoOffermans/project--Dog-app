@@ -96,14 +96,15 @@ footer {
 #score {
   height: 3rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
   opacity: 0.6;
 }
 
 #percentage {
   font-weight: bold;
+  margin-left: 0.5rem;
 }
