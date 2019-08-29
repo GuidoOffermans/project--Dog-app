@@ -1,11 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import DogPicture from "../../DogPicture/DogPicture";
-import { setCurrentBreed, setNextQuestion } from '../../../../redux/actions/gameActions';
-
+import {
+  setCurrentBreed,
+  setNextQuestion
+} from "../../../../redux/actions/gameActions";
+import { setScore } from "../../../../redux/actions/scoreAction";
 let index = 0;
 
 class PictureQuestion extends Component {
+  componentDidMount() {
+    this.props.setScore({
+      questionsAsked: 0,
+      correctAnswers: 0
+    });
+  }
 
   getTwoRandomBreeds = () => {
     const dogList = this.props.dogList;
@@ -38,14 +47,24 @@ class PictureQuestion extends Component {
   correctAnswerClicked = () => {
     alert("That's the right answer!");
     index = index + 1;
-		const nextDog = this.props.dogList[index];
+    const nextDog = this.props.dogList[index];
     this.props.setCurrentBreed(nextDog);
-    this.props.setNextQuestion(true)
+    this.props.setNextQuestion(true);
+    const questionsAsked = this.props.score.questionsAsked;
+    const correctAnswers = this.props.score.correctAnswers;
+    this.props.setScore({
+      questionsAsked: questionsAsked + 1,
+      correctAnswers: correctAnswers + 1
+    });
   };
 
   wrongAnswerClicked = () => {
     alert("That's the wrong answer!");
-    this.props.setNextQuestion(true)
+    this.props.setNextQuestion(true);
+    const questionsAsked = this.props.score.questionsAsked;
+    this.props.setScore({
+      questionsAsked: questionsAsked + 1
+    });
   };
 
   render() {
@@ -72,8 +91,12 @@ class PictureQuestion extends Component {
 const mapStateToProps = state => {
   return {
     dogList: state.dogList,
-    currentBreed: state.game.currentBreed
+    currentBreed: state.game.currentBreed,
+    score: state.score
   };
 };
 
-export default connect(mapStateToProps, { setCurrentBreed, setNextQuestion })(PictureQuestion);
+export default connect(
+  mapStateToProps,
+  { setCurrentBreed, setNextQuestion, setScore }
+)(PictureQuestion);
