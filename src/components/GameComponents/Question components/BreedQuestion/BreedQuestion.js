@@ -70,7 +70,7 @@ class BreedQuestion extends Component {
 
 	correctAnswerClicked = () => {
 		alert("That's the right answer!");
-		const nextDog = selectNext(this.props.currentDogpool);
+		const nextDog = selectNext(this.props.currentDogpool, this.props.currentBreed);
 		this.props.setCurrentBreed(nextDog);
 		this.props.setNextQuestion(true);
 		const questionsAsked = this.props.score.questionsAsked;
