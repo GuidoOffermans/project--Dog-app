@@ -1,24 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import DogPicture from "../../DogPicture/DogPicture";
+import { setCurrentBreed, setNextQuestion } from '../../../../redux/actions/gameActions';
 
-let hasData = false;
+let index = 0;
 
 class PictureQuestion extends Component {
-  // state = {
-  //   currentBreed: ""
-  // };
-
-  // componentDidUpdate = () => {
-  //   if (
-  //     hasData === false &&
-  //     this.props.dogsCurrentlyInGame.length > 0 &&
-  //     this.props.dogList.length > 0
-  //   ) {
-  //     this.setState({ currentBreed: this.props.dogsCurrentlyInGame[0][0] });
-  //     hasData = true;
-  //   }
-  // };
 
   getTwoRandomBreeds = () => {
     const dogList = this.props.dogList;
@@ -48,28 +35,17 @@ class PictureQuestion extends Component {
     }
   };
 
-  /* 
-  We know the first DogPicture div returned in the render method,
-  is the right one. This function is bound via onClick to that div. */
   correctAnswerClicked = () => {
     alert("That's the right answer!");
+    index = index + 1;
+		const nextDog = this.props.dogList[index];
+    this.props.setCurrentBreed(nextDog);
+    this.props.setNextQuestion(true)
   };
 
-  /* 
-  We know the two answers returned by getTwoRandomBreeds() are wrong.
-  This function is bound to them via onClick */
   wrongAnswerClicked = () => {
     alert("That's the wrong answer!");
   };
-
-  /* 
-  Checks for same flag as componenDidUpdate. Return nothing
-  if the required props and state are not available yet. 
-  If they are available, return the name of the current breed,
-  and return one DogPicture with this breed as its content. Then
-  get two random, unique DogPictures from the dogList array by calling
-  the getTwoRandomBreeds function. All the returned DogPicture 
-  components are wrapped in a div, so that we can bind onClick to them. */
 
   render() {
     return (
@@ -99,4 +75,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(PictureQuestion);
+export default connect(mapStateToProps, { setCurrentBreed, setNextQuestion })(PictureQuestion);
