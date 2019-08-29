@@ -14,7 +14,7 @@ function shuffleArray(array) {
 	return array;
 }
 
-function chunkify(arr) {
+const chunkify = (arr) => {
 	const chunkSize = 3;
 	let temporal = [];
 
