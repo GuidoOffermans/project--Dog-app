@@ -6,9 +6,17 @@ import {
   setCurrentBreed,
   setNextQuestion
 } from "../../../../redux/actions/gameActions";
+import { setScore } from "../../../../redux/actions/scoreAction";
 
 let index = 0;
 class BreedQuestion extends Component {
+  componentDidMount() {
+    this.props.setScore({
+      questionsAsked: 0,
+      correctAnswers: 0
+    });
+  }
+
   shuffleArray = array => {
     let currentIndex = array.length;
     let temporaryValue, randomIndex;
@@ -24,8 +32,6 @@ class BreedQuestion extends Component {
 
     return array;
   };
-
-  state = { hi: "" };
 
   getTwoRandomBreeds = (style2, style3) => {
     const dogList = this.props.dogList;
@@ -73,11 +79,21 @@ class BreedQuestion extends Component {
     const nextDog = this.props.dogList[index];
     this.props.setCurrentBreed(nextDog);
     this.props.setNextQuestion(true);
+    const questionsAsked = this.props.score.questionsAsked;
+    const correctAnswers = this.props.score.correctAnswers;
+    this.props.setScore({
+      questionsAsked: questionsAsked + 1,
+      correctAnswers: correctAnswers + 1
+    });
   };
 
   wrongAnswerClicked = () => {
     alert("That's the wrong answer!");
     this.props.setNextQuestion(true);
+    const questionsAsked = this.props.score.questionsAsked;
+    this.props.setScore({
+      questionsAsked: questionsAsked + 1
+    });
   };
 
   render() {
@@ -119,11 +135,12 @@ class BreedQuestion extends Component {
 const mapStateToProps = state => {
   return {
     dogList: state.dogList,
-    currentBreed: state.game.currentBreed
+    currentBreed: state.game.currentBreed,
+    score: state.score
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setCurrentBreed, setNextQuestion }
+  { setCurrentBreed, setNextQuestion, setScore }
 )(BreedQuestion);
