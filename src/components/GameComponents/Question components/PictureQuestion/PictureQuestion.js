@@ -28,10 +28,10 @@ class PictureQuestion extends Component {
 
     if (answer1 !== undefined) {
       return [
-        <div style={style2} onClick={this.wrongAnswerClicked}>
+        <div ref="incorrect1" style={style2} onClick={this.wrongAnswerClicked}>
           <DogPicture breed={answer1} />
         </div>,
-        <div style={style3} onClick={this.wrongAnswerClicked}>
+        <div ref="incorrect2" style={style3} onClick={this.wrongAnswerClicked}>
           <DogPicture breed={answer2} />
         </div>
       ];
@@ -66,28 +66,31 @@ class PictureQuestion extends Component {
   };
 
   wrongAnswerClicked = () => {
-    const correctAnswer = this.refs.correct;
-
-    setTimeout(() => {
-      alert("That's incorrect. The right answer is highlighted in green.");
+    const incorrect1 = this.refs.incorrect1;
+    const incorrect2 = this.refs.incorrect2;
+    
+      setTimeout( () => {
+        alert("Oops! That's wrong. This is the right answer");
       const nextDog = selectNext(
-        this.props.currentDogpool,
-        this.props.currentBreed
+      this.props.currentDogpool,
+      this.props.currentBreed
       );
       this.props.setCurrentBreed(nextDog);
-      correctAnswer.style.border = "none";
+      incorrect1.style.display = "block";
+      incorrect2.style.display = "block";
       this.props.setNextQuestion(true);
-      const questionsAsked = this.props.score.questionsAsked;
-      const correctAnswers = this.props.score.correctAnswers;
-      this.props.setScore({
-        questionsAsked: questionsAsked + 1,
-        correctAnswers: correctAnswers,
-        correctAnswersInARow: 0
-      });
-    }, 2000);
-
-    correctAnswer.style.border = "solid 0.3rem green";
-  };
+        const questionsAsked = this.props.score.questionsAsked;
+        const correctAnswers = this.props.score.correctAnswers;
+        this.props.setScore({
+          questionsAsked: questionsAsked + 1,
+          correctAnswers: correctAnswers,
+          correctAnswersInARow: 0
+        });
+      }, 2000);
+  
+    incorrect1.style.display = "none";
+    incorrect2.style.display = "none";
+    };
 
   render() {
     const cssOrder = shuffleArray([1, 2, 3]);

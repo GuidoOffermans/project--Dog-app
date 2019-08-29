@@ -34,14 +34,16 @@ class BreedQuestion extends Component {
 
       return [
         <div
-          style={style2}
+		  style={style2}
+		  ref="incorrect1"
           className="answer"
           onClick={this.wrongAnswerClicked}
         >
           {answer1Capitalized}
         </div>,
         <div
-          style={style3}
+		  style={style3}
+		  ref="incorrect2"
           className="answer"
           onClick={this.wrongAnswerClicked}
         >
@@ -78,16 +80,18 @@ class BreedQuestion extends Component {
   };
 
   wrongAnswerClicked = () => {
-	const correctAnswer = this.refs.correct;
+	const incorrect1 = this.refs.incorrect1;
+	const incorrect2 = this.refs.incorrect2;
 	
     setTimeout( () => {
-      alert("That's incorrect. The right answer is highlighted in green.");
+      alert("Oops! That's wrong. This is the right answer");
 	  const nextDog = selectNext(
 		this.props.currentDogpool,
 		this.props.currentBreed
 	  );
 	  this.props.setCurrentBreed(nextDog);
-	  correctAnswer.style.border = "none";
+	  incorrect1.style.display = "block";
+	  incorrect2.style.display = "block";
 	  this.props.setNextQuestion(true);
       const questionsAsked = this.props.score.questionsAsked;
       const correctAnswers = this.props.score.correctAnswers;
@@ -98,7 +102,8 @@ class BreedQuestion extends Component {
       });
     }, 2000);
 
-	correctAnswer.style.border = "solid 0.3rem green";
+	incorrect1.style.display = "none";
+	incorrect2.style.display = "none";
   };
 
   render() {
@@ -124,7 +129,6 @@ class BreedQuestion extends Component {
               <div
                 style={style1}
                 className="answer"
-                ref="correct"
                 onClick={this.correctAnswerClicked}
               >
                 {currentBreed.charAt(0).toUpperCase() + currentBreed.slice(1)}
