@@ -60,21 +60,26 @@ class PictureQuestion extends Component {
 		const nextDog = selectNext(this.props.currentDogpool, this.props.currentBreed);
     this.props.setCurrentBreed(nextDog);
     this.props.setNextQuestion(true);
-    const questionsAsked = this.props.score.questionsAsked;
-    const correctAnswers = this.props.score.correctAnswers;
-    this.props.setScore({
-      questionsAsked: questionsAsked + 1,
-      correctAnswers: correctAnswers + 1
-    });
+		const questionsAsked = this.props.score.questionsAsked;
+		const correctAnswers = this.props.score.correctAnswers;
+		const correctAnswersInARow = this.props.score.correctAnswersInARow;
+		this.props.setScore({
+			questionsAsked: questionsAsked + 1,
+			correctAnswers: correctAnswers + 1,
+			correctAnswersInARow: correctAnswersInARow + 1
+		});
   };
 
   wrongAnswerClicked = () => {
     alert("That's the wrong answer!");
     this.props.setNextQuestion(true);
-    const questionsAsked = this.props.score.questionsAsked;
-    this.props.setScore({
-      questionsAsked: questionsAsked + 1
-    });
+		const questionsAsked = this.props.score.questionsAsked;
+		const correctAnswers = this.props.score.correctAnswers;
+		this.props.setScore({
+			questionsAsked: questionsAsked + 1,
+			correctAnswers: correctAnswers,
+			correctAnswersInARow: 0
+		});
   };
 
   render() {
