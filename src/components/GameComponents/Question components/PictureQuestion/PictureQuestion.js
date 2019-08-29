@@ -73,13 +73,16 @@ class PictureQuestion extends Component {
     const style1 = { order: cssOrder[0] };
     const style2 = { order: cssOrder[1] };
     const style3 = { order: cssOrder[2] };
+    const currentBreed = this.props.currentBreed;
 
     return (
       <div id="picture-question" className="question">
         <React.Fragment>
           {this.props.currentBreed !== ""
             ? [
-                <div className="breedName">{this.props.currentBreed}</div>,
+                <div className="breedName">
+                  {currentBreed.charAt(0).toUpperCase() + currentBreed.slice(1)}
+                </div>,
                 <div className="answers">
                   <div style={style1} onClick={this.correctAnswerClicked}>
                     <DogPicture breed={this.props.currentBreed} />
