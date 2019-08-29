@@ -51,7 +51,7 @@ class BreedQuestion extends Component {
 
 	render() {
 		return (
-			<div className="question">
+			<div id="breed-question" className="question">
 				<React.Fragment>
 					{[
 						<div>

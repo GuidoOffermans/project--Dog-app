@@ -1,4 +1,4 @@
-.question img {
+#breed-question img {
     object-fit: cover;
     width:15rem;
     height:15rem;
@@ -6,7 +6,7 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.16);
 }
 
-.answer {
+#breed-question .answer {
     background-color:#4682B4;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16);
     display: flex;

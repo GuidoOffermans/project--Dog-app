@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import DogPicture from "../../DogPicture/DogPicture";
 import { setCurrentBreed, setNextQuestion } from '../../../../redux/actions/gameActions';
+import "./PictureQuestion.css"
 
 let index = 0;
 
@@ -50,7 +51,7 @@ class PictureQuestion extends Component {
 
   render() {
     return (
-      <div className="question">
+      <div id="picture-question" className="question">
         <React.Fragment>
           {this.props.currentBreed !== ""
             ? [
