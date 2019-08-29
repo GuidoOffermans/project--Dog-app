@@ -33,9 +33,13 @@ class GameContainer extends Component {
     }
   };
 
-  mixedGameType = () => {
-    this.props.setNextQuestion(false)
+  runsEachRound = () => {
+    this.props.setNextQuestion(false);
 
+    this.switchIfMixedGame();
+  };
+
+  switchIfMixedGame = () => {
     if (this.state.previousGameType === "breed") {
       this.setState({ previousGameType: "picture" });
       return "picture";
@@ -46,6 +50,10 @@ class GameContainer extends Component {
   };
 
   render() {
+    if (this.props.onToNextQuestion) {
+      this.runsEachRound();
+    }
+
     return (
       <div>
         <header>
@@ -58,10 +66,8 @@ class GameContainer extends Component {
           <GetQuestion
             currentBreed={this.props.currentBreed}
             gameType={
-              (this.props.gameType === "mixed")
-                ? (this.props.onToNextQuestion)
-                  ? this.mixedGameType()
-                  : this.state.previousGameType
+              this.props.gameType === "mixed"
+                ? this.state.previousGameType
                 : this.props.gameType
             }
           />

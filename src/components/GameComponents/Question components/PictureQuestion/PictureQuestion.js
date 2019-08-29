@@ -45,6 +45,7 @@ class PictureQuestion extends Component {
 
   wrongAnswerClicked = () => {
     alert("That's the wrong answer!");
+    this.props.setNextQuestion(true)
   };
 
   render() {
