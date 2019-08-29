@@ -75,9 +75,11 @@ class BreedQuestion extends Component {
 		this.props.setNextQuestion(true);
 		const questionsAsked = this.props.score.questionsAsked;
 		const correctAnswers = this.props.score.correctAnswers;
+		const correctAnswersInARow = this.props.score.correctAnswersInARow;
 		this.props.setScore({
 			questionsAsked: questionsAsked + 1,
-			correctAnswers: correctAnswers + 1
+			correctAnswers: correctAnswers + 1,
+			correctAnswersInARow: correctAnswersInARow + 1
 		});
 	};
 
@@ -85,8 +87,11 @@ class BreedQuestion extends Component {
 		alert("That's the wrong answer!");
 		this.props.setNextQuestion(true);
 		const questionsAsked = this.props.score.questionsAsked;
+		const correctAnswers = this.props.score.correctAnswers;
 		this.props.setScore({
-			questionsAsked: questionsAsked + 1
+			questionsAsked: questionsAsked + 1,
+			correctAnswers: correctAnswers,
+			correctAnswersInARow: 0
 		});
 	};
 
