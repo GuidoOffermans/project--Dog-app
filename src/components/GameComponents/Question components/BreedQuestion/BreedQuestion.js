@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import "./BreedQuestion.css"
 import DogPicture from '../../DogPicture/DogPicture';
 import { setCurrentBreed, setNextQuestion } from '../../../../redux/actions/gameActions';
 
