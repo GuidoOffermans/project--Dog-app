@@ -32,3 +32,18 @@ export function setGameType(gameType) {
     payload: gameType
   };
 }
+
+
+export const ADD_NEXT_CHUNK = "ADD_NEXT_CHUNK";
+export function addNextChunk() {
+  return {
+    type: ADD_NEXT_CHUNK
+  };
+}
+
+export const CLEAR_DOG_POOL = "CLEAR_DOG_POOL";
+export function clearDogPool() {
+  return {
+    type: CLEAR_DOG_POOL
+  };
+}

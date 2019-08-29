@@ -14,9 +14,9 @@ class Score extends Component {
     const score =
       (this.props.score.correctAnswers / this.props.score.questionsAsked) * 100;
     return (
-      <div>
+      <div id="score">
         {this.props.score.correctAnswers}/{this.props.score.questionsAsked}
-        <div>{this.displayScore(parseInt(score))}</div>
+        <div id="percentage">{this.displayScore(parseInt(score))}</div>
       </div>
     );
   }

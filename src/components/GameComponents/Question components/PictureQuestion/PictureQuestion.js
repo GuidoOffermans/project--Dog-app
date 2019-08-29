@@ -1,32 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import DogPicture from "../../DogPicture/DogPicture";
+import { selectNext } from "../../../Pages/GameContainer/dogfunction";
 import {
   setCurrentBreed,
-  setNextQuestion
+  setNextQuestion,
+  addNextChunk
 } from "../../../../redux/actions/gameActions";
+import { shuffleArray } from "../../../Pages/GameContainer/dogfunction";
 import { setScore } from "../../../../redux/actions/scoreAction";
 import "./PictureQuestion.css";
 
-let index = 0;
-
 class PictureQuestion extends Component {
-  shuffleArray = array => {
-    let currentIndex = array.length;
-    let temporaryValue, randomIndex;
-
-    while (0 !== currentIndex) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-  };
-
   getTwoRandomBreeds = (style2, style3) => {
     const dogList = this.props.dogList;
     const dogListClone = [...dogList];
@@ -43,10 +28,10 @@ class PictureQuestion extends Component {
 
     if (answer1 !== undefined) {
       return [
-        <div style={style2} onClick={this.wrongAnswerClicked}>
+        <div ref="incorrect1" style={style2} onClick={this.wrongAnswerClicked}>
           <DogPicture breed={answer1} />
         </div>,
-        <div style={style3} onClick={this.wrongAnswerClicked}>
+        <div ref="incorrect2" style={style3} onClick={this.wrongAnswerClicked}>
           <DogPicture breed={answer2} />
         </div>
       ];
@@ -57,29 +42,58 @@ class PictureQuestion extends Component {
 
   correctAnswerClicked = () => {
     alert("That's the right answer!");
-    index = index + 1;
-    const nextDog = this.props.dogList[index];
+
+    const nextDog = selectNext(
+      this.props.currentDogpool,
+      this.props.currentBreed
+    );
     this.props.setCurrentBreed(nextDog);
     this.props.setNextQuestion(true);
     const questionsAsked = this.props.score.questionsAsked;
     const correctAnswers = this.props.score.correctAnswers;
+    const correctAnswersInARow = this.props.score.correctAnswersInARow;
     this.props.setScore({
       questionsAsked: questionsAsked + 1,
-      correctAnswers: correctAnswers + 1
+      correctAnswers: correctAnswers + 1,
+      correctAnswersInARow: correctAnswersInARow + 1
     });
+    if (correctAnswersInARow === 4) {
+      this.props.addNextChunk();
+      this.props.setScore({
+        correctAnswersInARow: 0
+      });
+    }
   };
 
   wrongAnswerClicked = () => {
-    alert("That's the wrong answer!");
-    this.props.setNextQuestion(true);
-    const questionsAsked = this.props.score.questionsAsked;
-    this.props.setScore({
-      questionsAsked: questionsAsked + 1
-    });
-  };
+    const incorrect1 = this.refs.incorrect1;
+    const incorrect2 = this.refs.incorrect2;
+    
+      setTimeout( () => {
+        alert("Oops! That's wrong. This is the right answer");
+      const nextDog = selectNext(
+      this.props.currentDogpool,
+      this.props.currentBreed
+      );
+      this.props.setCurrentBreed(nextDog);
+      incorrect1.style.display = "block";
+      incorrect2.style.display = "block";
+      this.props.setNextQuestion(true);
+        const questionsAsked = this.props.score.questionsAsked;
+        const correctAnswers = this.props.score.correctAnswers;
+        this.props.setScore({
+          questionsAsked: questionsAsked + 1,
+          correctAnswers: correctAnswers,
+          correctAnswersInARow: 0
+        });
+      }, 2000);
+  
+    incorrect1.style.display = "none";
+    incorrect2.style.display = "none";
+    };
 
   render() {
-    const cssOrder = this.shuffleArray([1, 2, 3]);
+    const cssOrder = shuffleArray([1, 2, 3]);
 
     const style1 = { order: cssOrder[0] };
     const style2 = { order: cssOrder[1] };
@@ -95,7 +109,11 @@ class PictureQuestion extends Component {
                   {currentBreed.charAt(0).toUpperCase() + currentBreed.slice(1)}
                 </div>,
                 <div className="answers">
-                  <div style={style1} onClick={this.correctAnswerClicked}>
+                  <div
+                    ref="correct"
+                    style={style1}
+                    onClick={this.correctAnswerClicked}
+                  >
                     <DogPicture breed={this.props.currentBreed} />
                   </div>
                   {this.getTwoRandomBreeds(style2, style3)}
@@ -112,11 +130,17 @@ const mapStateToProps = state => {
   return {
     dogList: state.dogList,
     currentBreed: state.game.currentBreed,
-    score: state.score
+    score: state.score,
+    currentDogpool: state.game.currentDogpool
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setCurrentBreed, setNextQuestion, setScore }
+  {
+    setCurrentBreed,
+    setNextQuestion,
+    setScore,
+    addNextChunk
+  }
 )(PictureQuestion);

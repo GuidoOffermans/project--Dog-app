@@ -1,4 +1,3 @@
-
 function shuffleArray(array) {
 	let currentIndex = array.length;
 	let temporaryValue, randomIndex;
@@ -26,4 +25,14 @@ function chunkify(arr) {
 	return temporal;
 }
 
-module.exports = {chunkify, shuffleArray}
+const selectNext = (dogPoolArray, currentBreed) => {
+	const dogPoolCopy = [ ...dogPoolArray ];
+	const currentIndex = dogPoolCopy.indexOf(currentBreed);
+	const randomIndex = Math.floor(Math.random() * dogPoolCopy.length);
+
+	if (currentIndex === randomIndex) {
+		return selectNext(dogPoolArray, currentBreed);
+	}
+	return dogPoolCopy[randomIndex];
+};
+module.exports = { chunkify, shuffleArray, selectNext };
