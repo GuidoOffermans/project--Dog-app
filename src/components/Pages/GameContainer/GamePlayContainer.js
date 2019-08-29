@@ -8,6 +8,7 @@ import {
   setNextQuestion
 } from "../../../redux/actions/gameActions";
 import { setScore } from "../../../redux/actions/scoreAction";
+import { showHint } from "../../../redux/actions/hintAction";
 
 import Logo from "../../Layout/Logo/Logo";
 import BackArrow from "../../Layout/BackArrow/BackArrow";
@@ -43,6 +44,8 @@ class GameContainer extends Component {
     this.props.setNextQuestion(false);
 
     this.switchIfMixedGame();
+
+    this.props.showHint(false);
   };
 
   switchIfMixedGame = () => {
@@ -79,7 +82,14 @@ class GameContainer extends Component {
           />
         </main>
         <footer>
-          <Hints />
+          <Hints
+            currentBreed={this.props.currentBreed}
+            gameType={
+              this.props.gameType === "mixed"
+                ? this.state.previousGameType
+                : this.props.gameType
+            }
+          />
         </footer>
       </div>
     );
@@ -97,5 +107,12 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setChunkedDogs, setCurrentBreed, setGameType, setNextQuestion, setScore }
+  {
+    setChunkedDogs,
+    setCurrentBreed,
+    setGameType,
+    setNextQuestion,
+    setScore,
+    showHint
+  }
 )(GameContainer);
