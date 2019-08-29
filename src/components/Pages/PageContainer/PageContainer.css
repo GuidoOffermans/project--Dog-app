@@ -21,7 +21,7 @@ header {
 }
 
 .homeButton {
-  position: fixed;
+  position: absolute;
   left: 4.5rem;
 }
 
@@ -72,11 +72,39 @@ header {
 
 footer {
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
   left: 0;
   bottom: 0;
   font-size: 1rem;
+  height: 3rem;
   padding: 1rem;
   color: white;
   background-color: rgba(0,0,0,0.5);
+}
+
+.answers {
+  margin-bottom: 6rem;
+}
+
+.question {
+  margin-top : 3rem;
+}
+
+#score {
+  height: 3rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 1.7rem;
+  opacity: 0.6;
+}
+
+#percentage {
+  font-weight: bold;
+  margin-left: 0.5rem;
 }

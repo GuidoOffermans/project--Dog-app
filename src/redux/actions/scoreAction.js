@@ -1,8 +1,9 @@
-export const GET_SCORE = "GET_SCORE";
-export function getScore(score) {
+export const SET_SCORE = "SET_SCORE";
+export function setScore(score) {
   return {
-    type: GET_SCORE,
+    type: SET_SCORE,
     payload: score
   };
 }
+
 // score should be an object with questionsAsked and correctAnswers

@@ -1,0 +1,33 @@
+#picture-question .answers {
+    display: flex;
+    flex-direction: column;
+}
+
+#picture-question .breedName {
+  background-color: #4682b4;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  width: 15rem;
+  margin: 1rem auto;
+  color: white;
+}
+
+#picture-question .answers img {
+  object-fit: cover;
+  width: 15rem;
+  height: 15rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+#picture-question .answers img:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+  transform: scale(1.05);
+}
