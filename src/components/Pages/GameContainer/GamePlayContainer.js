@@ -4,7 +4,8 @@ import {
 	setCurrentBreed,
 	setGameType,
 	setNextQuestion,
-	addNextChunk
+  addNextChunk,
+  clearDogPool
 } from '../../../redux/actions/gameActions';
 import {
   setScore,
@@ -23,14 +24,10 @@ class GameContainer extends Component {
 	};
 
 	componentDidMount = () => {
-		// console.log(this.props.currentDogpool);
-
+    this.props.clearDogPool()
     this.props.addNextChunk();
-    
-    // console.log(this.props.currentDogpool);
     setTimeout(()=>this.props.setCurrentBreed(this.props.currentDogpool[0]),100)
-		// this.props.setCurrentBreed(this.props.currentDogpool);
-
+   
     this.props.setScore({
       questionsAsked: 0,
       correctAnswers: 0
@@ -114,6 +111,6 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  {  setCurrentBreed, setGameType, setNextQuestion, setScore, addNextChunk }
+  {  setCurrentBreed, setGameType, setNextQuestion, setScore, addNextChunk, clearDogPool}
 )(GameContainer);
 

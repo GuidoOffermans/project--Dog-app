@@ -3,7 +3,8 @@ import {
 	SET_CURRENT_BREED,
 	SET_GAME_TYPE,
 	SET_NEXT_QUESTION,
-	ADD_NEXT_CHUNK
+  ADD_NEXT_CHUNK,
+  CLEAR_DOG_POOL
 } from '../actions/gameActions';
 
 const initialState = {
@@ -35,6 +36,10 @@ export default (state = initialState, action = {}) => {
         chunkedDogs,
         currentDogpool
       }
+      case CLEAR_DOG_POOL:
+        return {
+          ...state, currentDogpool: []
+        }
 		default:
 			return state;
 	}
