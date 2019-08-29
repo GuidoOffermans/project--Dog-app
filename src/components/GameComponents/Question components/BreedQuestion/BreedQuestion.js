@@ -36,15 +36,16 @@ class BreedQuestion extends Component {
 
     let answer1 = dogListClone[answer1Index];
 
-    let answer1Capitalized = answer1.charAt(0).toUpperCase() + answer1.slice(1);
-
     dogListClone.splice(answer1Index, 1);
 
     let answer2 = dogListClone[Math.floor(Math.random() * dogListClone.length)];
 
-    let answer2Capitalized = answer2.charAt(0).toUpperCase() + answer2.slice(1);
-
     if (answer1 !== undefined) {
+      let answer1Capitalized =
+        answer1.charAt(0).toUpperCase() + answer1.slice(1);
+      let answer2Capitalized =
+        answer2.charAt(0).toUpperCase() + answer2.slice(1);
+
       return [
         <div
           style={style2}
