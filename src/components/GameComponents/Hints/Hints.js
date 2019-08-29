@@ -13,8 +13,8 @@ class Hints extends Component {
 
   render() {
     return (
-      <div>
-        <button type="button" onClick={this.handleClick}>
+      <div id="hintDiv">
+        <button type="button" id="hintButton" onClick={this.handleClick}>
           GET HINT
         </button>
         {this.props.gameType === "breed"
@@ -22,7 +22,7 @@ class Hints extends Component {
               <div>{this.getFirstLetterOfBreed(this.props.currentBreed)}</div>
             )
           : this.props.hint && (
-              <div>
+              <div id="pictureHint">
                 <DogPicture breed={this.props.currentBreed} />
               </div>
             )}

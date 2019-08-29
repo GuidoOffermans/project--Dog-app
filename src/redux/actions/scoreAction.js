@@ -5,5 +5,3 @@ export function setScore(score) {
     payload: score
   };
 }
-
-// score should be an object with questionsAsked and correctAnswers
