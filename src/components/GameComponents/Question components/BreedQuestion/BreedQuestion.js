@@ -5,28 +5,13 @@ import DogPicture from '../../DogPicture/DogPicture';
 import { selectNext } from '../../../Pages/GameContainer/dogfunction';
 import {
 	setCurrentBreed,
-  setNextQuestion,
-  addNextChunk
+	setNextQuestion,
+	addNextChunk
 } from '../../../../redux/actions/gameActions';
+import { shuffleArray } from '../../../Pages/GameContainer/dogfunction';
 import { setScore } from '../../../../redux/actions/scoreAction';
 
 class BreedQuestion extends Component {
-	shuffleArray = (array) => {
-		let currentIndex = array.length;
-		let temporaryValue, randomIndex;
-
-		while (0 !== currentIndex) {
-			randomIndex = Math.floor(Math.random() * currentIndex);
-			currentIndex -= 1;
-
-			temporaryValue = array[currentIndex];
-			array[currentIndex] = array[randomIndex];
-			array[randomIndex] = temporaryValue;
-		}
-
-		return array;
-	};
-
 	getTwoRandomBreeds = (style2, style3) => {
 		const dogList = this.props.dogList;
 		const dogListClone = [ ...dogList ];
@@ -71,7 +56,10 @@ class BreedQuestion extends Component {
 
 	correctAnswerClicked = () => {
 		alert("That's the right answer!");
-		const nextDog = selectNext(this.props.currentDogpool, this.props.currentBreed);
+		const nextDog = selectNext(
+			this.props.currentDogpool,
+			this.props.currentBreed
+		);
 		this.props.setCurrentBreed(nextDog);
 		this.props.setNextQuestion(true);
 		const questionsAsked = this.props.score.questionsAsked;
@@ -81,13 +69,13 @@ class BreedQuestion extends Component {
 			questionsAsked: questionsAsked + 1,
 			correctAnswers: correctAnswers + 1,
 			correctAnswersInARow: correctAnswersInARow + 1
-    });
-    if(correctAnswersInARow === 4){
-      this.props.addNextChunk()
-      this.props.setScore({
-        correctAnswersInARow: 0
-      });
-    }
+		});
+		if (correctAnswersInARow === 4) {
+			this.props.addNextChunk();
+			this.props.setScore({
+				correctAnswersInARow: 0
+			});
+		}
 	};
 
 	wrongAnswerClicked = () => {
@@ -103,7 +91,7 @@ class BreedQuestion extends Component {
 	};
 
 	render() {
-		const cssOrder = this.shuffleArray([ 1, 2, 3 ]);
+		const cssOrder = shuffleArray([ 1, 2, 3 ]);
 
 		const style1 = { order: cssOrder[0] };
 		const style2 = { order: cssOrder[1] };
@@ -151,6 +139,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
 	setCurrentBreed,
 	setNextQuestion,
-  setScore,
-  addNextChunk
+	setScore,
+	addNextChunk
 })(BreedQuestion);

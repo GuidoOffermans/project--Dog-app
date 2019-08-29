@@ -4,12 +4,10 @@ import {
 	setCurrentBreed,
 	setGameType,
 	setNextQuestion,
-  addNextChunk,
-  clearDogPool
+	addNextChunk,
+	clearDogPool
 } from '../../../redux/actions/gameActions';
-import {
-  setScore,
-} from '../../../redux/actions/scoreAction';
+import { setScore } from '../../../redux/actions/scoreAction';
 
 import Logo from '../../Layout/Logo/Logo';
 import BackArrow from '../../Layout/BackArrow/BackArrow';
@@ -24,24 +22,25 @@ class GameContainer extends Component {
 	};
 
 	componentDidMount = () => {
-    this.props.clearDogPool()
-    this.props.addNextChunk();
-    setTimeout(()=>this.props.setCurrentBreed(this.props.currentDogpool[0]),100)
-   
-    this.props.setScore({
-      questionsAsked: 0,
-	  correctAnswers: 0,
-	  correctAnswersInARow: 0
-    });
+		this.props.clearDogPool();
+		this.props.addNextChunk();
+		setTimeout(
+			() => this.props.setCurrentBreed(this.props.currentDogpool[0]),
+			100
+		);
 
-    if (this.props.gameType === "mixed") {
-      const gameTypes = ["breed", "picture"];
-      const randomGameType =
-        gameTypes[Math.floor(Math.random() * gameTypes.length)];
-      this.setState({ previousGameType: randomGameType });
-    }
-  
+		this.props.setScore({
+			questionsAsked: 0,
+			correctAnswers: 0,
+			correctAnswersInARow: 0
+		});
 
+		if (this.props.gameType === 'mixed') {
+			const gameTypes = [ 'breed', 'picture' ];
+			const randomGameType =
+				gameTypes[Math.floor(Math.random() * gameTypes.length)];
+			this.setState({ previousGameType: randomGameType });
+		}
 
 		if (this.props.gameType === 'mixed') {
 			const gameTypes = [ 'breed', 'picture' ];
@@ -110,8 +109,11 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(
-  mapStateToProps,
-  {  setCurrentBreed, setGameType, setNextQuestion, setScore, addNextChunk, clearDogPool}
-)(GameContainer);
-
+export default connect(mapStateToProps, {
+	setCurrentBreed,
+	setGameType,
+	setNextQuestion,
+	setScore,
+	addNextChunk,
+	clearDogPool
+})(GameContainer);
