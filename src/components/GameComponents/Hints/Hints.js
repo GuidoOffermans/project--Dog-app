@@ -13,16 +13,20 @@ class Hints extends Component {
 
   render() {
     return (
-      <div>
-        <button type="button" onClick={this.handleClick}>
+      <div id="hintDiv">
+        <button type="button" id="hintButton" onClick={this.handleClick}>
           GET HINT
         </button>
         {this.props.gameType === "breed"
           ? this.props.hint && (
-              <div>{this.getFirstLetterOfBreed(this.props.currentBreed)}</div>
+              <div id="letterHint">
+                {this.getFirstLetterOfBreed(
+                  this.props.currentBreed
+                ).toUpperCase()}
+              </div>
             )
           : this.props.hint && (
-              <div>
+              <div id="pictureHint">
                 <DogPicture breed={this.props.currentBreed} />
               </div>
             )}

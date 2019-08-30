@@ -49,13 +49,14 @@ header {
   opacity: 0.7;
 }
 
-#homepage .link, #games .link {
+#homepage .link,
+#games .link {
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   width: 70%;
   height: 5rem;
-  background-color:#4682B4;
+  background-color: #4682b4;
   margin: 1rem;
   font-size: 2rem;
   color: white;
@@ -65,9 +66,10 @@ header {
   transition: transform 0.3s ease;
 }
 
-#homepage .link:hover, #games .link:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19);
-  transform: scale(1.05)
+#homepage .link:hover,
+#games .link:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+  transform: scale(1.05);
 }
 
 footer {
@@ -79,18 +81,17 @@ footer {
   left: 0;
   bottom: 0;
   font-size: 1rem;
-  height: 3rem;
-  padding: 1rem;
+  height: 8rem;
   color: white;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .answers {
-  margin-bottom: 6rem;
+  margin-bottom: 9rem;
 }
 
 .question {
-  margin-top : 3rem;
+  margin-top: 3rem;
 }
 
 #score {
@@ -107,4 +108,31 @@ footer {
 #percentage {
   font-weight: bold;
   margin-left: 0.5rem;
+}
+
+#hintButton {
+  width: 90px;
+  height: 2rem;
+  border-radius: 5px;
+}
+
+#pictureHint {
+  height: 75px;
+  width: 75px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin: 0 auto;
+}
+
+#pictureHint img {
+  max-width: 100%;
+  max-height: 100%;
+  margin-top: 5px;
+  -webkit-filter: blur(2px);
+  margin-bottom: 5px;
+}
+
+#letterHint {
+  font-size: 2rem;
+  margin-top: 2px;
 }

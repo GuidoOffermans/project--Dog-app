@@ -1,6 +1,6 @@
 #picture-question .answers {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #picture-question .breedName {
@@ -30,4 +30,11 @@
 #picture-question .answers img:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
   transform: scale(1.05);
+}
+
+@media (min-width: 600px) {
+  #picture-question .answers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
