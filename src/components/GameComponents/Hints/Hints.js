@@ -19,7 +19,11 @@ class Hints extends Component {
         </button>
         {this.props.gameType === "breed"
           ? this.props.hint && (
-              <div>{this.getFirstLetterOfBreed(this.props.currentBreed)}</div>
+              <div id="letterHint">
+                {this.getFirstLetterOfBreed(
+                  this.props.currentBreed
+                ).toUpperCase()}
+              </div>
             )
           : this.props.hint && (
               <div id="pictureHint">
