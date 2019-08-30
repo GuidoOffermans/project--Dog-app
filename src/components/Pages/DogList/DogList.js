@@ -9,7 +9,7 @@ import HomeButton from "../../Layout/HomeButton/HomeButton";
 
 export class DogList extends Component {
   generateAlphabet = () => {
-    return "abcdefghijklmnopqrstuwyxz".toUpperCase().split("");
+    return "abcdefghijklmnopqrstuvwyxz".toUpperCase().split("");
   };
   groupByLetter = () => {
     return this.props.dogList.reduce((result, dogName) => {
@@ -24,6 +24,10 @@ export class DogList extends Component {
   };
   render() {
     const listOfDogs = this.groupByLetter();
+    const alphabet = this.generateAlphabet();
+    const commonLetters = alphabet.filter(letter =>
+      Object.keys(listOfDogs).includes(letter)
+    );
     return (
       <div>
         <header>
@@ -32,7 +36,7 @@ export class DogList extends Component {
           <Logo />
         </header>
         <div className="alphabet-picker">
-          {this.generateAlphabet().map(letter => {
+          {commonLetters.map(letter => {
             return (
               <div key={letter}>
                 <a href={`/dog-list#${letter}`}>{letter}</a>
