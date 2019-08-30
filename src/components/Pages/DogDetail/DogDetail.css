@@ -19,11 +19,33 @@
   color: white;
 }
 
-#dog-detail img {
+#dog-detail .dogImages {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+#dog-detail .dogImages img {
   object-fit: cover;
   width: 15rem;
   height: 15rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
-  margin-bottom: 1rem;
+  margin: 1rem;
+}
+
+
+#dog-detail .dogHistory {
+  text-align: center;
+  width: 80%;
+  margin: 2rem;
+}
+@media (min-width: 600px) {
+  #dog-detail .dogImages {
+    flex-direction: row;
+    width: 80%;
+  }
 }
