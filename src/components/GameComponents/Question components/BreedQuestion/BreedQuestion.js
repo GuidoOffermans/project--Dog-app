@@ -13,6 +13,8 @@ import { setScore } from "../../../../redux/actions/scoreAction";
 
 class BreedQuestion extends Component {
   getTwoRandomBreeds = (style2, style3) => {
+    let answer1
+    let answer2
     const dogList = this.props.dogList;
     const dogListClone = [...dogList];
     const currentIndex = dogListClone.indexOf(this.props.currentBreed);
@@ -20,11 +22,11 @@ class BreedQuestion extends Component {
 
     dogListClone.splice(currentIndex, 1);
 
-    let answer1 = dogListClone[answer1Index];
+    answer1 = dogListClone[answer1Index];
 
     dogListClone.splice(answer1Index, 1);
 
-    let answer2 = dogListClone[Math.floor(Math.random() * dogListClone.length)];
+    answer2 = dogListClone[Math.floor(Math.random() * dogListClone.length)];
 
     if (answer1 !== undefined) {
       let answer1Capitalized =
@@ -51,7 +53,7 @@ class BreedQuestion extends Component {
         </div>
       ];
     } else {
-      return false;
+      return this.getTwoRandomBreeds(style2, style3)
     }
   };
 
