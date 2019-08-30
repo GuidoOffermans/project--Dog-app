@@ -22,7 +22,7 @@ class DogDetail extends Component {
           <HomeButton />
         </header>
         <main id="dog-detail">
-          <div class="header">Pictures</div>
+          <div className="header">Pictures</div>
           {this.props.images.map((image, index) =>
             index < 10 ? <img key={index} src={image} alt="dog" /> : false
           )}
