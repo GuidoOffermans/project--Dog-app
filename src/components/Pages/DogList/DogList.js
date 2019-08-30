@@ -38,7 +38,7 @@ export class DogList extends Component {
         <div className="alphabet-picker">
           {commonLetters.map(letter => {
             return (
-              <div key={letter}>
+              <div className='letter' key={letter}>
                 <a href={`/dog-list#${letter}`}>{letter}</a>
               </div>
             );
@@ -52,7 +52,7 @@ export class DogList extends Component {
                 {listOfDogs[key].map(dog => {
                   return (
                     <div key={dog}>
-                      <Link to={"/dog-list/" + dog}>
+                      <Link className='link' to={"/dog-list/" + dog}>
                         {dog.charAt(0).toUpperCase() + dog.slice(1)}
                       </Link>
                     </div>
