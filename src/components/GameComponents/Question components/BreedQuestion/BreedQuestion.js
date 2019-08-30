@@ -76,6 +76,7 @@ class BreedQuestion extends Component {
 			correctAnswersInARow: correctAnswersInARow + 1
 		});
 		if (correctAnswersInARow === 4) {
+      alert('GOOD JOB! you have 5 in a row || three more dogs have been added to the game')
 			this.props.addNextChunk();
 			this.props.setScore({
 				correctAnswersInARow: 0
